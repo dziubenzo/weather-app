@@ -25,29 +25,6 @@ async function getWeatherData(location) {
 }
 
 getWeatherData(locationName).then((data) => {
-  const locationData = data.location;
-  const currentData = data.current;
-  const todayData = data.forecast.forecastday[0].day;
-  const todayAstroData = data.forecast.forecastday[0].astro;
-  const todayDate = data.forecast.forecastday[0].date;
-  const tomorrowData = data.forecast.forecastday[1].day;
-  const tomorrowAstroData = data.forecast.forecastday[1].astro;
-  const tomorrowDate = data.forecast.forecastday[1].date;
-  const twoDaysData = data.forecast.forecastday[2].day;
-  const twoDaysAstroData = data.forecast.forecastday[2].astro;
-  const twoDaysDate = data.forecast.forecastday[2].date;
-  const location = new Location(
-    locationData,
-    currentData,
-    todayData,
-    todayAstroData,
-    todayDate,
-    tomorrowData,
-    tomorrowAstroData,
-    tomorrowDate,
-    twoDaysData,
-    twoDaysAstroData,
-    twoDaysDate,
-  );
+  const location = new Location(data);
   console.log(location);
 });

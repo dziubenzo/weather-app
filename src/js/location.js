@@ -1,17 +1,17 @@
 export default class Location {
-  constructor(
-    location,
-    current,
-    today,
-    todayAstro,
-    todayDate,
-    tomorrow,
-    tomorrowAstro,
-    tomorrowDate,
-    twoDays,
-    twoDaysAstro,
-    twoDaysDate,
-  ) {
+  constructor(data) {
+    const location = data.location;
+    const current = data.current;
+    const today = data.forecast.forecastday[0].day;
+    const todayAstro = data.forecast.forecastday[0].astro;
+    const todayDate = data.forecast.forecastday[0].date;
+    const tomorrow = data.forecast.forecastday[1].day;
+    const tomorrowAstro = data.forecast.forecastday[1].astro;
+    const tomorrowDate = data.forecast.forecastday[1].date;
+    const twoDays = data.forecast.forecastday[2].day;
+    const twoDaysAstro = data.forecast.forecastday[2].astro;
+    const twoDaysDate = data.forecast.forecastday[2].date;
+
     this.location = location.name;
     this.country = location.country;
     this.localTime = new Date(location.localtime);
