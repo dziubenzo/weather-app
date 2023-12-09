@@ -1,0 +1,6 @@
+@use 'utilities' as *;
+@use 'media';
+
+// Load media queries
+// Goes at the end
+@include media.queries;
