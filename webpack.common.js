@@ -24,7 +24,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'SET_TITLE',
       template: './src/template.html',
-      favicon: './src/assets/SET_FAVICON-PATH.ico',
+      favicon: './src/assets/favicon.ico',
     }),
   ],
 };

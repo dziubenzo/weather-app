@@ -1,6 +1,17 @@
 @use 'utilities' as *;
 @use 'media';
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100svh;
+  background-color: rgb(100, 100, 100);
+}
+
 // Load media queries
 // Goes at the end
 @include media.queries;
