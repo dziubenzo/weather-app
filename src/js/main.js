@@ -1,7 +1,9 @@
 import '../css/main.scss';
+import Location from './location';
 
-let location = 'Katowice';
+let locationName = 'Katowice';
 
+// Fetch weather data from Weather API
 async function getWeatherData(location) {
   try {
     const response = await fetch(
@@ -16,10 +18,16 @@ async function getWeatherData(location) {
       throw new Error(error.error.message);
     }
   } catch (error) {
-    console.log("Error: " + error.message);
+    console.log('Error: ' + error.message);
   }
 }
 
-getWeatherData(location).then(data => {
-  console.log(data);
+getWeatherData(locationName).then((data) => {
+  const locationData = data.location
+  const currentData = data.current
+  const todayData = data.forecast.forecastday[0].day
+  const tomorrowData = data.forecast.forecastday[1].day
+  const twoDaysData = data.forecast.forecastday[2].day
+  const location = new Location(locationData, currentData, todayData, tomorrowData, twoDaysData);
+  console.log(location);
 });
