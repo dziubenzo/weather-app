@@ -5,7 +5,7 @@ import { underlineTab, animateGitHubLogo, showCurrentWeatherData } from './DOM';
 // Three days is the default as it is what the free Weather API key provides
 const FORECAST_LENGTH = 3;
 let locationName = 'Katowice';
-let unit = 'Celsius';
+let unit = 'celsius';
 
 // Fetch weather data from Weather API
 async function getWeatherData(location) {

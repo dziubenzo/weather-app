@@ -53,11 +53,6 @@ export function showCurrentWeatherData(locationObject, unit) {
     },
   )}`;
   descriptionP.textContent = currentData.weatherDescription;
-  if (unit === 'Celsius') {
-    temperatureP.textContent = currentData.celsius.temperature;
-    feelsLikeP.textContent = currentData.celsius.feelsLike;
-  } else {
-    temperatureP.textContent = currentData.fahrenheit.temperature;
-    feelsLikeP.textContent = currentData.fahrenheit.feelsLike;
-  }
+  temperatureP.textContent = currentData[`${unit}`].temperature;
+  feelsLikeP.textContent = currentData[`${unit}`].feelsLike;
 }
