@@ -35,19 +35,19 @@ export default class Location {
 
     // Current Celsius data
     this.current.celsius = {};
-    this.current.celsius.temperature = current.temp_c + ' °C';
-    this.current.celsius.windSpeed = current.wind_kph + ' km/h';
-    this.current.celsius.precipitation = current.precip_mm + ' mm';
-    this.current.celsius.feelsLike = current.feelslike_c + ' °C';
-    this.current.celsius.visibility = current.vis_km + ' km';
+    this.current.celsius.temperature = Math.round(current.temp_c) + ' °C';
+    this.current.celsius.windSpeed = Math.round(current.wind_kph) + ' km/h';
+    this.current.celsius.precipitation = Math.round(current.precip_mm) + ' mm';
+    this.current.celsius.feelsLike = Math.round(current.feelslike_c) + ' °C';
+    this.current.celsius.visibility = Math.round(current.vis_km) + ' km';
 
     // Current Fahrenheit data
     this.current.fahrenheit = {};
-    this.current.fahrenheit.temperature = current.temp_f + ' °F';
-    this.current.fahrenheit.windSpeed = current.wind_mph + ' mph';
-    this.current.fahrenheit.precipitation = current.precip_in + ' in';
-    this.current.fahrenheit.feelsLike = current.feelslike_f + ' °F';
-    this.current.fahrenheit.visibility = current.vis_miles + ' miles';
+    this.current.fahrenheit.temperature = Math.round(current.temp_f) + ' °F';
+    this.current.fahrenheit.windSpeed = Math.round(current.wind_mph) + ' mph';
+    this.current.fahrenheit.precipitation = Math.round(current.precip_in) + ' in';
+    this.current.fahrenheit.feelsLike = Math.round(current.feelslike_f) + ' °F';
+    this.current.fahrenheit.visibility = Math.round(current.vis_miles) + ' miles';
 
     // Fill an instance with forecast data dynamically for all days
     for (let index = 0; index < dayDataArray.length; index++) {
@@ -64,7 +64,7 @@ export default class Location {
         `${dateDataArray[index]} ${astroDataArray[index].sunset}`,
       );
       this[`${daysArray[index]}`].totalSnow =
-        dayDataArray[index].totalsnow_cm + ' cm';
+      Math.round(dayDataArray[index].totalsnow_cm) + ' cm';
       this[`${daysArray[index]}`].averageHumidity =
         dayDataArray[index].avghumidity + '%';
       this[`${daysArray[index]}`].chanceOfRain =
@@ -78,28 +78,28 @@ export default class Location {
       // Forecast data - Celsius
       this[`${daysArray[index]}`].celsius = {};
       this[`${daysArray[index]}`].celsius.maximumTemperature =
-        dayDataArray[index].maxtemp_c + ' °C';
+      Math.round(dayDataArray[index].maxtemp_c) + ' °C';
       this[`${daysArray[index]}`].celsius.minimumTemperature =
-        dayDataArray[index].mintemp_c + ' °C';
+      Math.round(dayDataArray[index].mintemp_c) + ' °C';
       this[`${daysArray[index]}`].celsius.averageTemperature =
-        dayDataArray[index].avgtemp_c + ' °C';
+      Math.round(dayDataArray[index].avgtemp_c) + ' °C';
       this[`${daysArray[index]}`].celsius.maximumWindSpeed =
-        dayDataArray[index].maxwind_kph + ' km/h';
+      Math.round(dayDataArray[index].maxwind_kph) + ' km/h';
       this[`${daysArray[index]}`].celsius.totalPrecipitation =
-        dayDataArray[index].totalprecip_mm + ' mm';
+      Math.round(dayDataArray[index].totalprecip_mm) + ' mm';
 
       // Forecast data - Fahrenheit
       this[`${daysArray[index]}`].fahrenheit = {};
       this[`${daysArray[index]}`].fahrenheit.maximumTemperature =
-        dayDataArray[index].maxtemp_f + ' °F';
+      Math.round(dayDataArray[index].maxtemp_f) + ' °F';
       this[`${daysArray[index]}`].fahrenheit.minimumTemperature =
-        dayDataArray[index].mintemp_f + ' °F';
+      Math.round(dayDataArray[index].mintemp_f) + ' °F';
       this[`${daysArray[index]}`].fahrenheit.averageTemperature =
-        dayDataArray[index].avgtemp_f + ' °F';
+      Math.round(dayDataArray[index].avgtemp_f) + ' °F';
       this[`${daysArray[index]}`].fahrenheit.maximumWindSpeed =
-        dayDataArray[index].maxwind_mph + ' mph';
+      Math.round(dayDataArray[index].maxwind_mph) + ' mph';
       this[`${daysArray[index]}`].fahrenheit.totalPrecipitation =
-        dayDataArray[index].totalprecip_in + ' in';
+      Math.round(dayDataArray[index].totalprecip_in) + ' in';
     }
   }
 }

@@ -31,7 +31,7 @@ export function animateGitHubLogo() {
 // Show weather info in the Current tab (default tab)
 export function showCurrentWeatherData(locationObject, unit) {
   const div = document.querySelector('.weather-info');
-  const locationP = div.querySelector('p.location-and-country');
+  const locationP = div.querySelector('p.location');
   const localTimeP = div.querySelector('p.local-time');
   const lastUpdatedP = div.querySelector('p.last-updated');
   const descriptionP = div.querySelector('p.description');
@@ -41,11 +41,11 @@ export function showCurrentWeatherData(locationObject, unit) {
   const currentData = locationObject.current;
 
   locationP.textContent = `${locationObject.location}, ${locationObject.country}`;
-  localTimeP.textContent = `Local time: ${format(
+  localTimeP.textContent = `${format(
     locationObject.localTime,
     'd MMM yyyy, kk:mm',
   )}`;
-  lastUpdatedP.textContent = `Last updated: ${formatDistance(
+  lastUpdatedP.textContent = `Updated ${formatDistance(
     currentData.lastUpdated,
     locationObject.localTime,
     {
