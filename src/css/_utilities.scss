@@ -34,12 +34,17 @@ $selected-tab-clr: #700076;
   background: url('/src/assets/foggy.svg');
 }
 
+.night::before {
+  background: url('/src/assets/night.svg');
+}
+
 .snowy::before,
 .rainy::before,
 .sunny::before,
 .cloudy::before,
 .thundery::before,
-.foggy::before {
+.foggy::before,
+.night::before {
   content: '';
   position: absolute;
   top: 0;
@@ -48,5 +53,5 @@ $selected-tab-clr: #700076;
   height: 100%;
   background-size: 5%;
   background-repeat: round;
-  filter: opacity(0.03);
+  filter: opacity(0.04);
 }

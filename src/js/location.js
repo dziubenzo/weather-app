@@ -27,6 +27,7 @@ export default class Location {
     this.current.lastUpdated = new Date(current.last_updated);
     this.current.weatherDescription = current.condition.text;
     this.current.weatherCode = current.condition.code;
+    this.current.isDay = current.is_day;
     this.current.humidity = current.humidity + '%';
     this.current.cloudCover = current.cloud + '%';
     this.current.uvIndex = current.uv;
@@ -37,6 +38,7 @@ export default class Location {
     this.current.celsius = {};
     this.current.celsius.temperature = Math.round(current.temp_c) + ' °C';
     this.current.celsius.windSpeed = Math.round(current.wind_kph) + ' km/h';
+    this.current.celsius.pressure = Math.round(current.pressure_mb) + ' hPa'
     this.current.celsius.precipitation = Math.round(current.precip_mm) + ' mm';
     this.current.celsius.feelsLike = Math.round(current.feelslike_c) + ' °C';
     this.current.celsius.visibility = Math.round(current.vis_km) + ' km';
@@ -45,6 +47,7 @@ export default class Location {
     this.current.fahrenheit = {};
     this.current.fahrenheit.temperature = Math.round(current.temp_f) + ' °F';
     this.current.fahrenheit.windSpeed = Math.round(current.wind_mph) + ' mph';
+    this.current.fahrenheit.pressure = Math.round(current.pressure_in) + ' in'
     this.current.fahrenheit.precipitation = Math.round(current.precip_in) + ' in';
     this.current.fahrenheit.feelsLike = Math.round(current.feelslike_f) + ' °F';
     this.current.fahrenheit.visibility = Math.round(current.vis_miles) + ' miles';
