@@ -19,13 +19,51 @@
 }
 
 header {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
   nav {
     display: flex;
-    gap: 16px;
-  }
+    width: 50%;
+    justify-content: space-evenly;
+    position: relative;
 
-  li {
-    list-style-type: none;
+    li {
+      list-style-type: none;
+      cursor: pointer;
+      width: 25%;
+      text-align: center;
+    }
+
+    .selected {
+      color: $selected-tab-clr;
+      font-weight: bolder;
+
+      &.today ~ .sliding-underline {
+        margin-left: 25%;
+      }
+
+      &.tomorrow ~ .sliding-underline {
+        margin-left: 50%;
+      }
+
+      &.two-days ~ .sliding-underline {
+        margin-left: 75%;
+      }
+    }
+
+    .sliding-underline {
+      left: 0;
+      bottom: -10px;
+      position: absolute;
+      height: 0.25rem;
+      width: 25%;
+      margin-left: 0;
+      background-color: $selected-tab-clr;
+      border: none;
+      transition: margin-left 0.3s ease-in-out;
+    }
   }
 }
 

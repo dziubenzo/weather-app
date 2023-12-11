@@ -1,5 +1,7 @@
-// Background patterns
+// Variables
+$selected-tab-clr: #700076;
 
+// Background patterns
 .snowy,
 .rainy,
 .sunny,
@@ -9,27 +11,27 @@
 }
 
 .snowy::before {
-  background: url('/src/assets/snowy.svg') rgb(255, 255, 255);
+  background: url('/src/assets/snowy.svg');
 }
 
 .rainy::before {
-  background: url('/src/assets/rainy.svg') rgb(255, 255, 255);
+  background: url('/src/assets/rainy.svg');
 }
 
 .sunny::before {
-  background: url('/src/assets/sunny.svg') rgb(151, 151, 151);
+  background: url('/src/assets/sunny.svg');
 }
 
 .cloudy::before {
-  background: url('/src/assets/cloudy.svg') rgb(151, 151, 151);
+  background: url('/src/assets/cloudy.svg');
 }
 
 .thundery::before {
-  background: url('/src/assets/thundery.svg') rgb(151, 151, 151);
+  background: url('/src/assets/thundery.svg');
 }
 
 .foggy::before {
-  background: url('/src/assets/foggy.svg') rgb(151, 151, 151);
+  background: url('/src/assets/foggy.svg');
 }
 
 .snowy::before,
@@ -46,5 +48,5 @@
   height: 100%;
   background-size: 5%;
   background-repeat: round;
-  filter: opacity(0.1);
+  filter: opacity(0.03);
 }
