@@ -73,9 +73,10 @@ main {
 footer {
   display: grid;
   place-items: center;
+  gap: 4px;
 
   i {
-    color: black;
+    color: rgb(0, 0, 0);
   }
 }
 

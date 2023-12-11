@@ -1,6 +1,6 @@
 import '../css/main.scss';
 import Location from './location';
-import { underlineTab } from './DOM';
+import { underlineTab, animateGitHubLogo } from './DOM';
 
 // Three days is the default as it is what the free Weather API key provides
 const FORECAST_LENGTH = 3;
@@ -26,6 +26,7 @@ async function getWeatherData(location) {
 }
 
 underlineTab();
+animateGitHubLogo();
 
 // getWeatherData(locationName).then((data) => {
 //   const location = new Location(data);
