@@ -1,0 +1,50 @@
+// Background patterns
+
+.snowy,
+.rainy,
+.sunny,
+.cloudy,
+.thundery {
+  position: relative;
+}
+
+.snowy::before {
+  background: url('/src/assets/snowy.svg') rgb(255, 255, 255);
+}
+
+.rainy::before {
+  background: url('/src/assets/rainy.svg') rgb(255, 255, 255);
+}
+
+.sunny::before {
+  background: url('/src/assets/sunny.svg') rgb(151, 151, 151);
+}
+
+.cloudy::before {
+  background: url('/src/assets/cloudy.svg') rgb(151, 151, 151);
+}
+
+.thundery::before {
+  background: url('/src/assets/thundery.svg') rgb(151, 151, 151);
+}
+
+.foggy::before {
+  background: url('/src/assets/foggy.svg') rgb(151, 151, 151);
+}
+
+.snowy::before,
+.rainy::before,
+.sunny::before,
+.cloudy::before,
+.thundery::before,
+.foggy::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: 5%;
+  background-repeat: round;
+  filter: opacity(0.1);
+}

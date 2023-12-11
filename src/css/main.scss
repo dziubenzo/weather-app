@@ -1,15 +1,44 @@
 @use 'utilities' as *;
 @use 'media';
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap');
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Kanit', sans-serif;
 }
 
-body {
+.container {
+  position: relative;
   height: 100svh;
-  background-color: rgb(100, 100, 100);
+  padding: 16px;
+  display: grid;
+  grid-template-rows: min-content 5fr min-content;
+  place-items: center;
+}
+
+header {
+  nav {
+    display: flex;
+    gap: 16px;
+  }
+
+  li {
+    list-style-type: none;
+  }
+}
+
+main {
+}
+
+footer {
+  display: grid;
+  place-items: center;
+
+  i {
+    color: black;
+  }
 }
 
 // Load media queries
