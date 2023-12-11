@@ -68,6 +68,27 @@ header {
 }
 
 main {
+.weather-info {
+  display: grid;
+  place-items: center;
+
+  .description {
+    font-size: 2.5rem;
+  }
+
+  .temperature {
+    font-size: 3rem;
+  }
+
+  .feels-like {
+    font-size: 1.5rem;
+  }
+
+  .local-time,
+  .last-updated {
+    font-size: 0.7rem;
+  }
+}
 }
 
 footer {

@@ -1,3 +1,5 @@
+import { format, formatDistance } from 'date-fns';
+
 // Underline a tab if clicked
 export function underlineTab() {
   const tabs = document.querySelectorAll('nav li');
@@ -24,4 +26,38 @@ export function animateGitHubLogo() {
   logo.addEventListener('mouseout', () => {
     logo.classList.remove('fa-beat-fade');
   });
+}
+
+// Show weather info in the Current tab (default tab)
+export function showCurrentWeatherData(locationObject, unit) {
+  const div = document.querySelector('.weather-info');
+  const locationP = div.querySelector('p.location-and-country');
+  const localTimeP = div.querySelector('p.local-time');
+  const lastUpdatedP = div.querySelector('p.last-updated');
+  const descriptionP = div.querySelector('p.description');
+  const temperatureP = div.querySelector('p.temperature');
+  const feelsLikeP = div.querySelector('p.feels-like');
+
+  const currentData = locationObject.current;
+
+  locationP.textContent = `${locationObject.location}, ${locationObject.country}`;
+  localTimeP.textContent = `Local time: ${format(
+    locationObject.localTime,
+    'd MMM yyyy, kk:mm',
+  )}`;
+  lastUpdatedP.textContent = `Last updated: ${formatDistance(
+    currentData.lastUpdated,
+    locationObject.localTime,
+    {
+      addSuffix: true,
+    },
+  )}`;
+  descriptionP.textContent = currentData.weatherDescription;
+  if (unit === 'Celsius') {
+    temperatureP.textContent = currentData.celsius.temperature;
+    feelsLikeP.textContent = currentData.celsius.feelsLike;
+  } else {
+    temperatureP.textContent = currentData.fahrenheit.temperature;
+    feelsLikeP.textContent = currentData.fahrenheit.feelsLike;
+  }
 }
