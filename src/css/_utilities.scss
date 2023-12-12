@@ -1,17 +1,11 @@
 // Variables
 $selected-tab-clr: #700076;
-$min-temperature-icon-clr: invert(66%) sepia(75%) saturate(3027%) hue-rotate(160deg) brightness(95%) contrast(90%);
-$max-temperature-icon-clr: invert(32%) sepia(85%) saturate(5006%) hue-rotate(346deg) brightness(77%) contrast(122%);
+$min-temperature-icon-clr: invert(66%) sepia(75%) saturate(3027%)
+  hue-rotate(160deg) brightness(95%) contrast(90%);
+$max-temperature-icon-clr: invert(32%) sepia(85%) saturate(5006%)
+  hue-rotate(346deg) brightness(77%) contrast(122%);
 
 // Background patterns
-.snowy,
-.rainy,
-.sunny,
-.cloudy,
-.thundery {
-  position: relative;
-}
-
 .snowy::before {
   background: url('/src/assets/snowy.svg');
 }
@@ -20,40 +14,19 @@ $max-temperature-icon-clr: invert(32%) sepia(85%) saturate(5006%) hue-rotate(346
   background: url('/src/assets/rainy.svg');
 }
 
-.sunny::before {
-  background: url('/src/assets/sunny.svg');
-}
+.snowy,
+.rainy {
+  position: relative;
 
-.cloudy::before {
-  background: url('/src/assets/cloudy.svg');
-}
-
-.thundery::before {
-  background: url('/src/assets/thundery.svg');
-}
-
-.foggy::before {
-  background: url('/src/assets/foggy.svg');
-}
-
-.night::before {
-  background: url('/src/assets/night.svg');
-}
-
-.snowy::before,
-.rainy::before,
-.sunny::before,
-.cloudy::before,
-.thundery::before,
-.foggy::before,
-.night::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-size: 5%;
-  background-repeat: round;
-  filter: opacity(0.04);
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: 5%;
+    background-repeat: round;
+    filter: opacity(0.04);
+  }
 }
