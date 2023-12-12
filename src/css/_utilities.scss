@@ -10,7 +10,87 @@ $max-temperature-icon-clr: invert(32%) sepia(85%) saturate(5006%)
   background: url('/src/assets/weather-icons/weather-cloudy.svg');
 }
 
-.cloudy {
+.fog::before {
+  background: url('/src/assets/weather-icons/weather-fog.svg');
+}
+
+.lightning-rainy::before {
+  background: url('/src/assets/weather-icons/weather-lightning-rainy.svg');
+}
+
+.lightning::before {
+  background: url('/src/assets/weather-icons/weather-lightning.svg');
+}
+
+.night-partly-cloudy::before {
+  background: url('/src/assets/weather-icons/weather-night-partly-cloudy.svg');
+}
+
+.night::before {
+  background: url('/src/assets/weather-icons/weather-night.svg');
+}
+
+.partly-cloudy::before {
+  background: url('/src/assets/weather-icons/weather-partly-cloudy.svg');
+}
+
+.partly-lightning::before {
+  background: url('/src/assets/weather-icons/weather-partly-lightning.svg');
+}
+
+.partly-rainy::before {
+  background: url('/src/assets/weather-icons/weather-partly-rainy.svg');
+}
+
+.partly-snowy-rainy::before {
+  background: url('/src/assets/weather-icons/weather-partly-snowy-rainy.svg');
+}
+
+.partly-snowy::before {
+  background: url('/src/assets/weather-icons/weather-partly-snowy.svg');
+}
+
+.pouring::before {
+  background: url('/src/assets/weather-icons/weather-pouring.svg');
+}
+
+.rainy::before {
+  background: url('/src/assets/weather-icons/weather-rainy.svg');
+}
+
+.snowy-heavy::before {
+  background: url('/src/assets/weather-icons/weather-snowy-heavy.svg');
+}
+
+.snowy-rainy::before {
+  background: url('/src/assets/weather-icons/weather-snowy-rainy.svg');
+}
+
+.snowy::before {
+  background: url('/src/assets/weather-icons/weather-snowy.svg');
+}
+
+.sunny::before {
+  background: url('/src/assets/weather-icons/weather-sunny.svg');
+}
+
+.cloudy,
+.fog,
+.lightning-rainy,
+.lightning,
+.night-partly-cloudy,
+.night,
+.partly-cloudy,
+.partly-lightning,
+.partly-rainy,
+.partly-snowy-rainy,
+.partly-snowy,
+.pouring,
+.rainy,
+.snowy-heavy,
+.snowy-rainy,
+.snowy,
+.sunny {
   position: relative;
 
   &::before {
@@ -25,4 +105,3 @@ $max-temperature-icon-clr: invert(32%) sepia(85%) saturate(5006%)
     filter: opacity(0.04);
   }
 }
-

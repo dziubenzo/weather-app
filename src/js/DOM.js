@@ -1,5 +1,5 @@
 import { format, formatDistance } from 'date-fns';
-import { getWeatherIcon } from './icons';
+import { getWeatherIcon, setBackgroundPattern } from './icons';
 import humiditySrc from '../assets/weather-details-icons/humidity.svg';
 import cloudCoverSrc from '../assets/weather-details-icons/cloud-cover.svg';
 import windSpeedSrc from '../assets/weather-details-icons/wind-speed.svg';
@@ -92,6 +92,10 @@ export function changeTab(locationObject, unit) {
   currentTabBtn.addEventListener('click', () => {
     forecastTab.style.display = 'none';
     currentTab.style.display = 'grid';
+    setBackgroundPattern(
+      locationObject.current.weatherCode,
+      locationObject.current.isDay,
+    );
     showCurrentWeather(locationObject, unit);
     showCurrentWeatherDetails(locationObject, unit);
   });
@@ -100,6 +104,9 @@ export function changeTab(locationObject, unit) {
     button.addEventListener('click', () => {
       currentTab.style.display = 'none';
       forecastTab.style.display = 'grid';
+      setBackgroundPattern(
+        locationObject[`${forecastDays[index]}`].weatherCode,
+      );
       showForecastWeather(locationObject, forecastDays[index], unit);
       showForecastWeatherDetails(locationObject, forecastDays[index], unit);
     });

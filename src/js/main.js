@@ -39,7 +39,7 @@ animateGitHubLogo();
 showWeatherDetailsIcons();
 getWeatherData(locationName).then((data) => {
   const location = new Location(data);
-  setBackgroundPattern(location);
+  setBackgroundPattern(location.current.weatherCode, location.current.isDay);
   showCurrentWeather(location, unit);
   showCurrentWeatherDetails(location, unit);
   changeTab(location, unit);

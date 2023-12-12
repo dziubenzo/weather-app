@@ -16,8 +16,8 @@ import snowyRainy from '../assets/weather-icons/weather-snowy-rainy.svg';
 import snowy from '../assets/weather-icons/weather-snowy.svg';
 import sunny from '../assets/weather-icons/weather-sunny.svg';
 
-// Associate every possible code with an icon
-const weatherCodes = {
+// Associate all weather codes with weather icons
+const icons = {
   1000: sunny,
   1003: partlyCloudy,
   1006: cloudy,
@@ -68,7 +68,7 @@ const weatherCodes = {
   1282: lightning,
 };
 
-// Associate every possible code with class name
+// Associate all weather codes with class names
 const classNames = {
   1000: 'sunny',
   1003: 'partly-cloudy',
@@ -130,7 +130,7 @@ export function getWeatherIcon(weatherCode, isDay = true) {
     return nightPartlyCloudy;
   }
   // Return matching icon source
-  return weatherCodes[weatherCode];
+  return icons[weatherCode];
 }
 
 // Set background pattern to the weather icon displayed in the current tab
@@ -145,6 +145,6 @@ export function setBackgroundPattern(weatherCode, isDay = true) {
     body.className = 'night-partly-cloudy';
     return;
   }
-  // Add matching class name as a class to body
+  // Add matching class to the body element
   body.className = classNames[weatherCode];
 }
