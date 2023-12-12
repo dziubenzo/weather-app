@@ -42,15 +42,44 @@ export function showWeatherDetailsIcons() {
   document.querySelector('img[alt="Cloud Cover Icon"]').src = cloudCoverSrc;
   document.querySelector('img[alt="Wind Speed Icon"]').src = windSpeedSrc;
   document.querySelector('img[alt="Pressure Icon"]').src = pressureSrc;
-  document.querySelector('img[alt="Precipitation Icon"]').src = precipitationSrc;
+  document.querySelector('img[alt="Precipitation Icon"]').src =
+    precipitationSrc;
   document.querySelector('img[alt="Visibility Icon"]').src = visibilitySrc;
   document.querySelector('img[alt="UV Index Icon"]').src = uvIndexSrc;
-  document.querySelector('img[alt="Air Quality Index Icon"]').src = airQualityIndexSrc;
+  document.querySelector('img[alt="Air Quality Index Icon"]').src =
+    airQualityIndexSrc;
 }
 
-// Show weather info in the Current tab
+// Change tabs and data displayed
+export function changeTab(locationObject, unit) {
+  const currentTabBtn = document.querySelector('li[class*="current"]');
+  const todayTabBtn = document.querySelector('li[class*="today"]');
+  const tomorrowTabBtn = document.querySelector('li[class*="tomorrow"]');
+  const twoDaysTabBtn = document.querySelector('li[class*="two-days"]');
+  const forecastTabBtns = [todayTabBtn, tomorrowTabBtn, twoDaysTabBtn];
+  const forecastDays = ['today', 'tomorrow', 'twoDays'];
+  const currentTab = document.querySelector('.current-tab');
+  const forecastTab = document.querySelector('.forecast-tab');
+
+  currentTabBtn.addEventListener('click', () => {
+    forecastTab.style.display = 'none';
+    currentTab.style.display = 'grid';
+    showCurrentWeather(locationObject, unit);
+    showCurrentWeatherDetails(locationObject, unit);
+  });
+
+  forecastTabBtns.forEach((button, index) => {
+    button.addEventListener('click', () => {
+      currentTab.style.display = 'none';
+      forecastTab.style.display = 'grid';
+      showForecastWeather(locationObject, forecastDays[index], unit);
+    });
+  });
+}
+
+// Show main weather info in the Current tab
 export function showCurrentWeather(locationObject, unit) {
-  const div = document.querySelector('.weather-info');
+  const div = document.querySelector('.current-tab > .weather-info');
   const locationP = div.querySelector('p.location');
   const localTimeP = div.querySelector('p.local-time');
   const lastUpdatedP = div.querySelector('p.last-updated');
@@ -65,6 +94,9 @@ export function showCurrentWeather(locationObject, unit) {
     locationObject.localTime,
     'd MMM yyyy, kk:mm',
   )}`;
+  descriptionP.textContent = currentData.weatherDescription;
+  temperatureP.textContent = currentData[`${unit}`].temperature;
+  feelsLikeP.textContent = currentData[`${unit}`].feelsLike;
   lastUpdatedP.textContent = `Updated ${formatDistance(
     currentData.lastUpdated,
     locationObject.localTime,
@@ -72,14 +104,11 @@ export function showCurrentWeather(locationObject, unit) {
       addSuffix: true,
     },
   )}`;
-  descriptionP.textContent = currentData.weatherDescription;
-  temperatureP.textContent = currentData[`${unit}`].temperature;
-  feelsLikeP.textContent = currentData[`${unit}`].feelsLike;
 }
 
 // Show weather info details in the Current tab
 export function showCurrentWeatherDetails(locationObject, unit) {
-  const div = document.querySelector('.weather-info-details');
+  const div = document.querySelector('.current-tab > .weather-info-details');
   const humidityP = div.querySelector('p.humidity-value');
   const cloudCoverP = div.querySelector('p.cloud-cover-value');
   const uvIndexP = div.querySelector('p.uv-index-value');
@@ -99,4 +128,24 @@ export function showCurrentWeatherDetails(locationObject, unit) {
   pressureP.textContent = currentData[`${unit}`].pressure;
   precipitationP.textContent = currentData[`${unit}`].precipitation;
   visibilityP.textContent = currentData[`${unit}`].visibility;
+}
+
+// Show main weather info in forecast tabs
+export function showForecastWeather(locationObject, day, unit) {
+  const div = document.querySelector('.forecast-tab > .weather-info');
+  const locationP = div.querySelector('p.location');
+  const localTimeP = div.querySelector('p.local-time');
+  const descriptionP = div.querySelector('p.description');
+  const maxTemperatureP = div.querySelector('p.max-temperature');
+  const avgTemperatureP = div.querySelector('p.avg-temperature');
+  const minTemperatureP = div.querySelector('p.min-temperature');
+
+  const forecastData = locationObject[`${day}`];
+
+  locationP.textContent = `${locationObject.location}, ${locationObject.country}`;
+  localTimeP.textContent = `${format(forecastData.date, 'EEEE, d MMMM yyyy')}`;
+  descriptionP.textContent = forecastData.weatherDescription;
+  maxTemperatureP.textContent = forecastData[`${unit}`].maximumTemperature;
+  avgTemperatureP.textContent = forecastData[`${unit}`].averageTemperature;
+  minTemperatureP.textContent = forecastData[`${unit}`].minimumTemperature;
 }
