@@ -14,6 +14,12 @@ import sunriseSrc from '../assets/weather-details-icons/sunrise.svg';
 import sunsetSrc from '../assets/weather-details-icons/sunset.svg';
 import totalSnowSrc from '../assets/weather-details-icons/total-snow.svg';
 
+// Set background pattern to the weather icon displayed in the current tab
+export function setBackgroundPattern(locationObject) {
+  const body = document.querySelector('body');
+  body.style.background = getWeatherIcon(locationObject.current.weatherCode, locationObject.current.isDay);
+}
+
 // Underline a tab if clicked
 export function underlineTab() {
   const tabs = document.querySelectorAll('nav li');

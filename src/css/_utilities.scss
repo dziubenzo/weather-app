@@ -6,16 +6,11 @@ $max-temperature-icon-clr: invert(32%) sepia(85%) saturate(5006%)
   hue-rotate(346deg) brightness(77%) contrast(122%);
 
 // Background patterns
-.snowy::before {
-  background: url('/src/assets/snowy.svg');
+.cloudy::before {
+  background: url('/src/assets/weather-icons/weather-cloudy.svg');
 }
 
-.rainy::before {
-  background: url('/src/assets/rainy.svg');
-}
-
-.snowy,
-.rainy {
+.cloudy {
   position: relative;
 
   &::before {
@@ -30,3 +25,4 @@ $max-temperature-icon-clr: invert(32%) sepia(85%) saturate(5006%)
     filter: opacity(0.04);
   }
 }
+

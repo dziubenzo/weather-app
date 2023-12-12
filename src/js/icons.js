@@ -68,6 +68,58 @@ const weatherCodes = {
   1282: lightning,
 };
 
+// Associate every possible code with class name
+const classNames = {
+  1000: 'sunny',
+  1003: 'partly-cloudy',
+  1006: 'cloudy',
+  1009: 'cloudy',
+  1030: 'fog',
+  1063: 'partly-rainy',
+  1066: 'partly-snowy',
+  1069: 'partly-snowy-rainy',
+  1072: 'partly-snowy-rainy',
+  1087: 'lightning',
+  1114: 'snowy-heavy',
+  1117: 'snowy-heavy',
+  1135: 'fog',
+  1147: 'fog',
+  1150: 'partly-rainy',
+  1153: 'rainy',
+  1168: 'snowy-rainy',
+  1171: 'snowy-rainy',
+  1180: 'partly-rainy',
+  1183: 'rainy',
+  1186: 'pouring',
+  1189: 'pouring',
+  1192: 'pouring',
+  1195: 'pouring',
+  1198: 'snowy-rainy',
+  1201: 'snowy-rainy',
+  1204: 'snowy-rainy',
+  1207: 'snowy-rainy',
+  1210: 'partly-snowy',
+  1213: 'snowy',
+  1216: 'snowy',
+  1219: 'snowy',
+  1222: 'snowy',
+  1225: 'snowy',
+  1237: 'snowy-rainy',
+  1240: 'rainy',
+  1243: 'pouring',
+  1246: 'pouring',
+  1249: 'snowy-rainy',
+  1252: 'snowy-rainy',
+  1255: 'snowy',
+  1258: 'snowy-heavy',
+  1261: 'partly-snowy-rainy',
+  1264: 'snowy-rainy',
+  1273: 'partly-lightning',
+  1276: 'lightning-rainy',
+  1279: 'lightning',
+  1282: 'lightning',
+};
+
 // Determine weather icon to be displayed based on weather code and whether it is day or night
 export function getWeatherIcon(weatherCode, isDay = true) {
   // Handle two cases that use night icons
@@ -78,5 +130,6 @@ export function getWeatherIcon(weatherCode, isDay = true) {
     return nightPartlyCloudy;
   }
   // Return matching icon source
+  console.log(weatherCodes[weatherCode]);
   return weatherCodes[weatherCode];
 }

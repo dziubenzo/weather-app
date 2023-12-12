@@ -7,6 +7,7 @@ import {
   showCurrentWeatherDetails,
   showWeatherDetailsIcons,
   changeTab,
+  setBackgroundPattern,
 } from './DOM';
 
 // Three days is the default as it is what the free Weather API key provides
@@ -38,6 +39,7 @@ animateGitHubLogo();
 showWeatherDetailsIcons();
 getWeatherData(locationName).then((data) => {
   const location = new Location(data);
+  setBackgroundPattern(location);
   showCurrentWeather(location, unit);
   showCurrentWeatherDetails(location, unit);
   changeTab(location, unit);
