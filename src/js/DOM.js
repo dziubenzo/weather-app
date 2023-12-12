@@ -7,6 +7,11 @@ import precipitationSrc from '../assets/weather-details-icons/precipitation.svg'
 import visibilitySrc from '../assets/weather-details-icons/visibility.svg';
 import uvIndexSrc from '../assets/weather-details-icons/uv-index.svg';
 import airQualityIndexSrc from '../assets/weather-details-icons/air-quality-index.svg';
+import chanceOfRainSrc from '../assets/weather-details-icons/chance-of-rain.svg';
+import chanceOfSnowSrc from '../assets/weather-details-icons/chance-of-snow.svg';
+import sunriseSrc from '../assets/weather-details-icons/sunrise.svg';
+import sunsetSrc from '../assets/weather-details-icons/sunset.svg';
+import totalSnowSrc from '../assets/weather-details-icons/total-snow.svg';
 
 // Underline a tab if clicked
 export function underlineTab() {
@@ -36,18 +41,40 @@ export function animateGitHubLogo() {
   });
 }
 
-// Show weather details icons
+// Show weather details icons for all tabs
 export function showWeatherDetailsIcons() {
+  // Current tab
   document.querySelector('img[alt="Humidity Icon"]').src = humiditySrc;
   document.querySelector('img[alt="Cloud Cover Icon"]').src = cloudCoverSrc;
   document.querySelector('img[alt="Wind Speed Icon"]').src = windSpeedSrc;
+
   document.querySelector('img[alt="Pressure Icon"]').src = pressureSrc;
   document.querySelector('img[alt="Precipitation Icon"]').src =
     precipitationSrc;
   document.querySelector('img[alt="Visibility Icon"]').src = visibilitySrc;
-  document.querySelector('img[alt="UV Index Icon"]').src = uvIndexSrc;
-  document.querySelector('img[alt="Air Quality Index Icon"]').src =
+  document.querySelector('.current-tab img[alt="UV Index Icon"]').src =
+    uvIndexSrc;
+  document.querySelector('.current-tab img[alt="Air Quality Index Icon"]').src =
     airQualityIndexSrc;
+
+  // Forecast tabs
+  document.querySelector('img[alt="Average Humidity Icon"]').src = humiditySrc;
+  document.querySelector('img[alt="Maximum Wind Speed Icon"]').src =
+    windSpeedSrc;
+  document.querySelector('img[alt="Chance of Rain Icon"]').src =
+    chanceOfRainSrc;
+  document.querySelector('img[alt="Chance of Snow Icon"]').src =
+    chanceOfSnowSrc;
+  document.querySelector('img[alt="Total Precipitation Icon"]').src =
+    precipitationSrc;
+  document.querySelector('img[alt="Total Snow Icon"]').src = totalSnowSrc;
+  document.querySelector('.forecast-tab img[alt="UV Index Icon"]').src =
+    uvIndexSrc;
+  document.querySelector(
+    '.forecast-tab img[alt="Air Quality Index Icon"]',
+  ).src = airQualityIndexSrc;
+  document.querySelector('img[alt="Sunrise Icon"]').src = sunriseSrc;
+  document.querySelector('img[alt="Sunset Icon"]').src = sunsetSrc;
 }
 
 // Change tabs and data displayed

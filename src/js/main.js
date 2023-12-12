@@ -38,7 +38,6 @@ animateGitHubLogo();
 showWeatherDetailsIcons();
 getWeatherData(locationName).then((data) => {
   const location = new Location(data);
-  console.log(location);
   showCurrentWeather(location, unit);
   showCurrentWeatherDetails(location, unit);
   changeTab(location, unit);
