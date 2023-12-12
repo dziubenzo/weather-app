@@ -124,10 +124,12 @@ main {
       p:first-child::before {
         content: url('../assets/weather-details-icons/min-temperature.svg');
         left: -50px;
+        filter: $min-temperature-icon-clr;
       }
 
       p:last-child::after {
         content: url('../assets/weather-details-icons/max-temperature.svg');
+        filter: $max-temperature-icon-clr;
         right: -50px;
       }
     }
