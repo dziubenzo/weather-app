@@ -130,6 +130,21 @@ export function getWeatherIcon(weatherCode, isDay = true) {
     return nightPartlyCloudy;
   }
   // Return matching icon source
-  console.log(weatherCodes[weatherCode]);
   return weatherCodes[weatherCode];
+}
+
+// Set background pattern to the weather icon displayed in the current tab
+export function setBackgroundPattern(weatherCode, isDay = true) {
+  const body = document.querySelector('body');
+  // Handle two cases that use night icons
+  if (!isDay && weatherCode === 1000) {
+    body.className = 'night-clear';
+    return;
+  }
+  if (!isDay && weatherCode === 1003) {
+    body.className = 'night-partly-cloudy';
+    return;
+  }
+  // Add matching class name as a class to body
+  body.className = classNames[weatherCode];
 }

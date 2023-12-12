@@ -7,8 +7,8 @@ import {
   showCurrentWeatherDetails,
   showWeatherDetailsIcons,
   changeTab,
-  setBackgroundPattern,
 } from './DOM';
+import { setBackgroundPattern } from './icons';
 
 // Three days is the default as it is what the free Weather API key provides
 const FORECAST_LENGTH = 3;
