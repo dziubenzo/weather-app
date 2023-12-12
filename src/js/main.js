@@ -32,11 +32,11 @@ async function getWeatherData(location) {
   }
 }
 
-underlineTab();
-animateGitHubLogo();
-showWeatherDetailsIcons();
-getWeatherData(locationName).then((data) => {
-  const location = new Location(data);
-  showCurrentWeather(location, unit);
-  showCurrentWeatherDetails(location, unit);
-});
+// underlineTab();
+// animateGitHubLogo();
+// showWeatherDetailsIcons();
+// getWeatherData(locationName).then((data) => {
+//   const location = new Location(data);
+//   showCurrentWeather(location, unit);
+//   showCurrentWeatherDetails(location, unit);
+// });

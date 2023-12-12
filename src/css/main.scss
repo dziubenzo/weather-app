@@ -68,33 +68,39 @@ header {
 }
 
 main {
-  display: grid;
-  gap: 32px;
-
-  .weather-info {
+  .current-tab {
     display: grid;
-    place-items: center;
+    gap: 32px;
 
-    .location {
-      font-size: 2rem;
-    }
+    .weather-info {
+      display: grid;
+      place-items: center;
 
-    .description {
-      font-size: 2.5rem;
-    }
+      .location {
+        font-size: 2rem;
+      }
 
-    .temperature {
-      font-size: 4rem;
-    }
+      .description {
+        font-size: 2.5rem;
+      }
 
-    .feels-like {
-      font-size: 2rem;
-    }
+      .temperature {
+        font-size: 4rem;
+      }
 
-    .local-time,
-    .last-updated {
-      font-size: 1rem;
+      .feels-like {
+        font-size: 2rem;
+      }
+
+      .local-time,
+      .last-updated {
+        font-size: 1rem;
+      }
     }
+  .forecast-tab {
+    display: none;
+    gap: 32px;
+  }
   }
 
   .weather-info-details {
