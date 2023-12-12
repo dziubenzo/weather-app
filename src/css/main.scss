@@ -104,10 +104,18 @@ main {
     gap: 16px;
 
     div {
-      text-align: center;
+      display: grid;
+      grid-template-columns: 1fr 3fr;
+      place-items: center;
 
-      p:first-child {
-        font-size: 0.8rem;
+      img {
+        grid-row: 1 / 3;
+        height: 48px;
+        width: 48px;
+      }
+
+      p {
+        font-size: 0.9rem;
       }
 
       p:last-child {

@@ -1,4 +1,12 @@
 import { format, formatDistance } from 'date-fns';
+import humiditySrc from '../assets/weather-details-icons/humidity.svg';
+import cloudCoverSrc from '../assets/weather-details-icons/cloud-cover.svg';
+import windSpeedSrc from '../assets/weather-details-icons/wind-speed.svg';
+import pressureSrc from '../assets/weather-details-icons/pressure.svg';
+import precipitationSrc from '../assets/weather-details-icons/precipitation.svg';
+import visibilitySrc from '../assets/weather-details-icons/visibility.svg';
+import uvIndexSrc from '../assets/weather-details-icons/uv-index.svg';
+import airQualityIndexSrc from '../assets/weather-details-icons/air-quality-index.svg';
 
 // Underline a tab if clicked
 export function underlineTab() {
@@ -26,6 +34,18 @@ export function animateGitHubLogo() {
   logo.addEventListener('mouseout', () => {
     logo.classList.remove('fa-beat-fade');
   });
+}
+
+// Show weather details icons
+export function showWeatherDetailsIcons() {
+  document.querySelector('img[alt="Humidity Icon"]').src = humiditySrc;
+  document.querySelector('img[alt="Cloud Cover Icon"]').src = cloudCoverSrc;
+  document.querySelector('img[alt="Wind Speed Icon"]').src = windSpeedSrc;
+  document.querySelector('img[alt="Pressure Icon"]').src = pressureSrc;
+  document.querySelector('img[alt="Precipitation Icon"]').src = precipitationSrc;
+  document.querySelector('img[alt="Visibility Icon"]').src = visibilitySrc;
+  document.querySelector('img[alt="UV Index Icon"]').src = uvIndexSrc;
+  document.querySelector('img[alt="Air Quality Index Icon"]').src = airQualityIndexSrc;
 }
 
 // Show weather info in the Current tab
