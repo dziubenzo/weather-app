@@ -73,6 +73,7 @@ export function changeTab(locationObject, unit) {
       currentTab.style.display = 'none';
       forecastTab.style.display = 'grid';
       showForecastWeather(locationObject, forecastDays[index], unit);
+      showForecastWeatherDetails(locationObject, forecastDays[index], unit);
     });
   });
 }
@@ -148,4 +149,32 @@ export function showForecastWeather(locationObject, day, unit) {
   maxTemperatureP.textContent = forecastData[`${unit}`].maximumTemperature;
   avgTemperatureP.textContent = forecastData[`${unit}`].averageTemperature;
   minTemperatureP.textContent = forecastData[`${unit}`].minimumTemperature;
+}
+
+// Show weather info details in forecast tabs
+export function showForecastWeatherDetails(locationObject, day, unit) {
+  const div = document.querySelector('.forecast-tab > .weather-info-details');
+  const avgHumidityP = div.querySelector('p.avg-humidity-value');
+  const maxWindSpeedP = div.querySelector('p.max-wind-speed-value');
+  const chanceOfRainP = div.querySelector('p.chance-of-rain-value');
+  const chanceOfSnowP = div.querySelector('p.chance-of-snow-value');
+  const totalPrecipitationP = div.querySelector('p.total-precipitation-value');
+  const totalSnowP = div.querySelector('p.total-snow-value');
+  const uvIndexP = div.querySelector('p.uv-index-value');
+  const airQualityIndexP = div.querySelector('p.air-quality-index-value');
+  const sunriseP = div.querySelector('p.sunrise-value');
+  const sunsetP = div.querySelector('p.sunset-value');
+
+  const forecastData = locationObject[`${day}`];
+
+  avgHumidityP.textContent = forecastData.averageHumidity;
+  maxWindSpeedP.textContent = forecastData[`${unit}`].maximumWindSpeed;
+  chanceOfRainP.textContent = forecastData.chanceOfRain;
+  chanceOfSnowP.textContent = forecastData.chanceOfSnow;
+  totalPrecipitationP.textContent = forecastData[`${unit}`].totalPrecipitation;
+  totalSnowP.textContent = forecastData.totalSnow;
+  uvIndexP.textContent = forecastData.uvIndex;
+  airQualityIndexP.textContent = forecastData.airQualityIndex;
+  sunriseP.textContent = format(forecastData.sunrise, 'kk:mm');
+  sunsetP.textContent = format(forecastData.sunset, 'kk:mm');
 }
