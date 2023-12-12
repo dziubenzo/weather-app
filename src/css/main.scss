@@ -107,6 +107,30 @@ main {
     .last-updated {
       font-size: 1rem;
     }
+
+    .min-max-temps {
+      position: relative;
+      display: flex;
+      gap: 48px;
+
+      p:first-child::before,
+      p:last-child::after {
+        position: absolute;
+        top: 5px;
+        height: 40px;
+        width: 40px;
+      }
+
+      p:first-child::before {
+        content: url('../assets/weather-details-icons/min-temperature.svg');
+        left: -50px;
+      }
+
+      p:last-child::after {
+        content: url('../assets/weather-details-icons/max-temperature.svg');
+        right: -50px;
+      }
+    }
   }
 
   .weather-info-details {

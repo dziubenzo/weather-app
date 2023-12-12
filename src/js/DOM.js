@@ -110,10 +110,10 @@ export function showCurrentWeather(locationObject, unit) {
   const div = document.querySelector('.current-tab > .weather-info');
   const locationP = div.querySelector('p.location');
   const localTimeP = div.querySelector('p.local-time');
-  const lastUpdatedP = div.querySelector('p.last-updated');
   const descriptionP = div.querySelector('p.description');
   const temperatureP = div.querySelector('p.temperature');
   const feelsLikeP = div.querySelector('p.feels-like');
+  const lastUpdatedP = div.querySelector('p.last-updated');
 
   const currentData = locationObject.current;
 
@@ -167,7 +167,9 @@ export function showForecastWeather(locationObject, day, unit) {
   const maxTemperatureP = div.querySelector('p.max-temperature');
   const avgTemperatureP = div.querySelector('p.avg-temperature');
   const minTemperatureP = div.querySelector('p.min-temperature');
+  const lastUpdatedP = div.querySelector('p.last-updated');
 
+  const currentData = locationObject.current;
   const forecastData = locationObject[`${day}`];
 
   locationP.textContent = `${locationObject.location}, ${locationObject.country}`;
@@ -176,6 +178,13 @@ export function showForecastWeather(locationObject, day, unit) {
   maxTemperatureP.textContent = forecastData[`${unit}`].maximumTemperature;
   avgTemperatureP.textContent = forecastData[`${unit}`].averageTemperature;
   minTemperatureP.textContent = forecastData[`${unit}`].minimumTemperature;
+  lastUpdatedP.textContent = `Updated ${formatDistance(
+    currentData.lastUpdated,
+    locationObject.localTime,
+    {
+      addSuffix: true,
+    },
+  )}`;
 }
 
 // Show weather info details in forecast tabs
