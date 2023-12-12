@@ -112,6 +112,7 @@ export function showCurrentWeather(locationObject, unit) {
   const locationP = div.querySelector('p.location');
   const localTimeP = div.querySelector('p.local-time');
   const descriptionP = div.querySelector('p.description');
+  const weatherIconImg = div.querySelector('img');
   const temperatureP = div.querySelector('p.temperature');
   const feelsLikeP = div.querySelector('p.feels-like');
   const lastUpdatedP = div.querySelector('p.last-updated');
@@ -124,6 +125,11 @@ export function showCurrentWeather(locationObject, unit) {
     'd MMM yyyy, kk:mm',
   )}`;
   descriptionP.textContent = currentData.weatherDescription;
+  weatherIconImg.src = getWeatherIcon(
+    currentData.weatherCode,
+    currentData.isDay,
+  );
+  weatherIconImg.alt = `${currentData.weatherDescription} Icon`;
   temperatureP.textContent = currentData[`${unit}`].temperature;
   feelsLikeP.textContent = currentData[`${unit}`].feelsLike;
   lastUpdatedP.textContent = `Updated ${formatDistance(
@@ -165,9 +171,10 @@ export function showForecastWeather(locationObject, day, unit) {
   const locationP = div.querySelector('p.location');
   const localTimeP = div.querySelector('p.local-time');
   const descriptionP = div.querySelector('p.description');
-  const maxTemperatureP = div.querySelector('p.max-temperature');
+  const weatherIconImg = div.querySelector('img');
   const avgTemperatureP = div.querySelector('p.avg-temperature');
   const minTemperatureP = div.querySelector('p.min-temperature');
+  const maxTemperatureP = div.querySelector('p.max-temperature');
   const lastUpdatedP = div.querySelector('p.last-updated');
 
   const currentData = locationObject.current;
@@ -176,9 +183,11 @@ export function showForecastWeather(locationObject, day, unit) {
   locationP.textContent = `${locationObject.location}, ${locationObject.country}`;
   localTimeP.textContent = `${format(forecastData.date, 'EEEE, d MMMM yyyy')}`;
   descriptionP.textContent = forecastData.weatherDescription;
-  maxTemperatureP.textContent = forecastData[`${unit}`].maximumTemperature;
+  weatherIconImg.src = getWeatherIcon(forecastData.weatherCode);
+  weatherIconImg.alt = `${currentData.weatherDescription} Icon`;
   avgTemperatureP.textContent = forecastData[`${unit}`].averageTemperature;
   minTemperatureP.textContent = forecastData[`${unit}`].minimumTemperature;
+  maxTemperatureP.textContent = forecastData[`${unit}`].maximumTemperature;
   lastUpdatedP.textContent = `Updated ${formatDistance(
     currentData.lastUpdated,
     locationObject.localTime,

@@ -69,12 +69,12 @@ const weatherCodes = {
 };
 
 // Determine weather icon to be displayed based on weather code and whether it is day or night
-export function getWeatherIcon(weatherCode, isDay) {
+export function getWeatherIcon(weatherCode, isDay = true) {
   // Handle two cases that use night icons
-  if (!isDay && weatherCode === '1000') {
+  if (!isDay && weatherCode === 1000) {
     return nightClear;
   }
-  if (!isDay && weatherCode === '1003') {
+  if (!isDay && weatherCode === 1003) {
     return nightPartlyCloudy;
   }
   // Return matching icon source

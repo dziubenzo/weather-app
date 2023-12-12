@@ -27,7 +27,7 @@ export default class Location {
     this.current.lastUpdated = new Date(current.last_updated);
     this.current.weatherDescription = current.condition.text;
     this.current.weatherCode = current.condition.code;
-    this.current.isDay = current.is_day;
+    this.current.isDay = Boolean(current.is_day);
     this.current.humidity = current.humidity + '%';
     this.current.cloudCover = current.cloud + '%';
     this.current.uvIndex = current.uv;
