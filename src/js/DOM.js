@@ -1,4 +1,5 @@
 import { format, formatDistance } from 'date-fns';
+import { getWeatherIcon } from './icons';
 import humiditySrc from '../assets/weather-details-icons/humidity.svg';
 import cloudCoverSrc from '../assets/weather-details-icons/cloud-cover.svg';
 import windSpeedSrc from '../assets/weather-details-icons/wind-speed.svg';
