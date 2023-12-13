@@ -8,6 +8,7 @@ import {
   showIcons,
   changeTab,
   changeUnits,
+  changeLocation,
 } from './DOM';
 import { setBackgroundPattern } from './icons';
 
@@ -18,7 +19,7 @@ let location;
 let unit = 'Celsius';
 
 // Fetch weather data from Weather API
-async function getWeatherData(location) {
+export async function getWeatherData(location) {
   try {
     const response = await fetch(
       `https://api.weatherapi.com/v1/forecast.json?key=b9aed0e0fc274fd7b8a152201230712&q=${location}&days=${FORECAST_LENGTH}&aqi=yes`,
@@ -43,14 +44,21 @@ export function changeUnitVariable(newUnit) {
   changeTab(location, unit);
 }
 
-underlineTab();
-animateGitHubLogo();
-showIcons(unit);
-getWeatherData(locationName).then((data) => {
-  location = new Location(data);
+// Update variables and display weather data for the new location
+export function displayWebsite(newLocationName, fetchedData) {
+  location = new Location(fetchedData);
+  locationName = newLocationName;
   setBackgroundPattern(location.current.weatherCode, location.current.isDay);
   showCurrentWeather(location, unit);
   showCurrentWeatherDetails(location, unit);
   changeTab(location, unit);
   changeUnits(location, unit);
+  changeLocation();
+}
+
+underlineTab();
+animateGitHubLogo();
+showIcons(unit);
+getWeatherData(locationName).then((data) => {
+  displayWebsite(locationName, data);
 });

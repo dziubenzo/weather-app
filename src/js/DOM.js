@@ -1,6 +1,6 @@
 import { format, formatDistance } from 'date-fns';
 import { getWeatherIcon, setBackgroundPattern } from './icons';
-import { changeUnitVariable } from './main';
+import { getWeatherData, changeUnitVariable, displayWebsite } from './main';
 import humiditySrc from '../assets/weather-details-icons/humidity.svg';
 import cloudCoverSrc from '../assets/weather-details-icons/cloud-cover.svg';
 import windSpeedSrc from '../assets/weather-details-icons/wind-speed.svg';
@@ -298,4 +298,24 @@ export function showForecastWeatherDetails(locationObject, day, unit) {
   airQualityIndexP.textContent = forecastData.airQualityIndex;
   sunriseP.textContent = format(forecastData.sunrise, 'kk:mm');
   sunsetP.textContent = format(forecastData.sunset, 'kk:mm');
+}
+
+// Change weather forecast location
+export function changeLocation() {
+  const form = document.querySelector('form');
+  form.addEventListener('submit', (event) => {
+    // Prevent form submission
+    event.preventDefault();
+    const newLocationName = form.elements['location'].value;
+    getWeatherData(newLocationName)
+      .then((data) => {
+        // Clear the input field if fetching is successful
+        form.elements['location'].value = '';
+        // Display weather data for a new location
+        displayWebsite(newLocationName, data);
+      })
+      .catch((error) => {
+        return;
+      });
+  });
 }
