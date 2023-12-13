@@ -16,6 +16,7 @@ import sunsetSrc from '../assets/weather-details-icons/sunset.svg';
 import totalSnowSrc from '../assets/weather-details-icons/total-snow.svg';
 import celsiusSrc from '../assets/celsius.svg';
 import fahrenheitSrc from '../assets/fahrenheit.svg';
+import submitScr from '../assets/submit.svg';
 
 // Underline a tab if clicked
 export function underlineTab() {
@@ -80,7 +81,7 @@ export function showIcons(unit) {
   document.querySelector('img[alt="Sunrise Icon"]').src = sunriseSrc;
   document.querySelector('img[alt="Sunset Icon"]').src = sunsetSrc;
 
-  // Show Celsius/Fahrenheit icon
+  // Celsius/Fahrenheit icon
   const unitIcons = document.querySelectorAll('img[class="change-unit"]');
   unitIcons.forEach((icon) => {
     if (unit === 'Celsius') {
@@ -91,6 +92,8 @@ export function showIcons(unit) {
       icon.alt = 'Celsius Icon';
     }
   });
+  // Submit icon
+  document.querySelector('img[class="submit-icon"]').src = submitScr;
 }
 
 // Change units for weather data
