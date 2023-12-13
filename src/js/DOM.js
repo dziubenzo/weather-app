@@ -1,4 +1,5 @@
 import { format, formatDistance } from 'date-fns';
+import removeAccents from 'remove-accents';
 import { getWeatherIcon, setBackgroundPattern } from './icons';
 import { getWeatherData, changeUnitVariable, displayWebsite } from './main';
 import humiditySrc from '../assets/weather-details-icons/humidity.svg';
@@ -325,7 +326,10 @@ export function changeLocation() {
   form.addEventListener('submit', (event) => {
     // Prevent form submission
     event.preventDefault();
-    const newLocationName = form.elements['location'].value;
+    const originalLocationName = form.elements['location'].value;
+    // Get rid of accents because using those in the Polish language somehow changes the fetched country property to be in a language different than English
+    const newLocationName = removeAccents(originalLocationName);
+    console.log(newLocationName);
     getWeatherData(newLocationName)
       .then((data) => {
         // Remove previous error message if there is any
@@ -343,7 +347,7 @@ export function changeLocation() {
         // Manipulate error message and show it
         const slicedError = error.toString().slice(7);
         showErrorMessage(
-          `Error for query '${newLocationName}': ${slicedError}`,
+          `Error for query '${originalLocationName}': ${slicedError}`,
         );
       });
   });
