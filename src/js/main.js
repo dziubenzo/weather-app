@@ -6,9 +6,9 @@ import {
   showCurrentWeather,
   showCurrentWeatherDetails,
   showIcons,
-  changeTab,
-  changeUnits,
-  listenForChangeLocation,
+  listenForTabs,
+  listenForUnitChange,
+  listenForNewLocation,
 } from './DOM';
 import { setBackgroundPattern } from './icons';
 
@@ -36,8 +36,16 @@ export async function getWeatherData(location) {
 // Change the value of the unit variable
 export function changeUnitVariable(newUnit) {
   unit = newUnit;
-  // Make sure unit change is applied to all tabs
-  changeTab(location, unit);
+}
+
+// Get the unit variable
+export function getUnitVariable() {
+  return unit;
+}
+
+// Get the location object
+export function getLocationObject() {
+  return location;
 }
 
 // Update variables and display weather data for the new location
@@ -47,14 +55,14 @@ export function displayWebsite(newLocationName, fetchedData) {
   setBackgroundPattern(location.current.weatherCode, location.current.isDay);
   showCurrentWeather(location, unit);
   showCurrentWeatherDetails(location, unit);
-  changeTab(location, unit);
-  changeUnits(location, unit);
 }
 
 underlineTab();
 animateGitHubLogo();
-showIcons(unit);
+showIcons();
 getWeatherData(locationName).then((data) => {
-  listenForChangeLocation();
   displayWebsite(locationName, data);
+  listenForTabs();
+  listenForUnitChange();
+  listenForNewLocation();
 });

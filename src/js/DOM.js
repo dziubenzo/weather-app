@@ -1,7 +1,13 @@
 import { format, formatDistance } from 'date-fns';
 import removeAccents from 'remove-accents';
 import { getWeatherIcon, setBackgroundPattern } from './icons';
-import { getWeatherData, changeUnitVariable, displayWebsite } from './main';
+import {
+  getWeatherData,
+  changeUnitVariable,
+  displayWebsite,
+  getUnitVariable,
+  getLocationObject,
+} from './main';
 import humiditySrc from '../assets/weather-details-icons/humidity.svg';
 import cloudCoverSrc from '../assets/weather-details-icons/cloud-cover.svg';
 import windSpeedSrc from '../assets/weather-details-icons/wind-speed.svg';
@@ -48,7 +54,7 @@ export function animateGitHubLogo() {
 }
 
 // Show icons for all tabs
-export function showIcons(unit) {
+export function showIcons() {
   // Current tab
   document.querySelector('img[alt="Humidity Icon"]').src = humiditySrc;
   document.querySelector('img[alt="Cloud Cover Icon"]').src = cloudCoverSrc;
@@ -83,6 +89,7 @@ export function showIcons(unit) {
   document.querySelector('img[alt="Sunset Icon"]').src = sunsetSrc;
 
   // Celsius/Fahrenheit icon
+  const unit = getUnitVariable();
   const unitIcons = document.querySelectorAll('img[class="change-unit"]');
   unitIcons.forEach((icon) => {
     if (unit === 'Celsius') {
@@ -97,8 +104,10 @@ export function showIcons(unit) {
   document.querySelector('img[class="submit-icon"]').src = submitScr;
 }
 
-// Change units for weather data
-export function changeUnits(locationObject, unit) {
+// Handle changing units for weather data
+export function listenForUnitChange() {
+  const locationObject = getLocationObject();
+  let unit = getUnitVariable();
   const unitIcons = document.querySelectorAll('img[class="change-unit"]');
   unitIcons.forEach((icon) => {
     icon.addEventListener('click', () => {
@@ -139,8 +148,8 @@ export function changeUnits(locationObject, unit) {
   });
 }
 
-// Change tabs and data displayed
-export function changeTab(locationObject, unit) {
+// Handle changing tabs and data displayed
+export function listenForTabs() {
   const currentTabBtn = document.querySelector('li[class*="current"]');
   const todayTabBtn = document.querySelector('li[class*="today"]');
   const tomorrowTabBtn = document.querySelector('li[class*="tomorrow"]');
@@ -151,6 +160,9 @@ export function changeTab(locationObject, unit) {
   const forecastTab = document.querySelector('.forecast-tab');
 
   currentTabBtn.addEventListener('click', () => {
+    // Get up-to-date data
+    const locationObject = getLocationObject();
+    const unit = getUnitVariable();
     forecastTab.style.display = 'none';
     currentTab.style.display = 'grid';
     setBackgroundPattern(
@@ -163,6 +175,9 @@ export function changeTab(locationObject, unit) {
 
   forecastTabBtns.forEach((button, index) => {
     button.addEventListener('click', () => {
+      // Get up-to-date data
+      const locationObject = getLocationObject();
+      const unit = getUnitVariable();
       currentTab.style.display = 'none';
       forecastTab.style.display = 'grid';
       setBackgroundPattern(
@@ -320,8 +335,8 @@ function removeErrorMessage() {
   }
 }
 
-// Change weather forecast location
-export function listenForChangeLocation() {
+// Handle changing weather forecast location
+export function listenForNewLocation() {
   const form = document.querySelector('form');
   form.addEventListener('submit', (event) => {
     // Prevent form submission
