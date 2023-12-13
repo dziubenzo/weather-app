@@ -8,7 +8,7 @@ import {
   showIcons,
   changeTab,
   changeUnits,
-  changeLocation,
+  listenForChangeLocation,
 } from './DOM';
 import { setBackgroundPattern } from './icons';
 
@@ -49,12 +49,12 @@ export function displayWebsite(newLocationName, fetchedData) {
   showCurrentWeatherDetails(location, unit);
   changeTab(location, unit);
   changeUnits(location, unit);
-  changeLocation();
 }
 
 underlineTab();
 animateGitHubLogo();
 showIcons(unit);
 getWeatherData(locationName).then((data) => {
+  listenForChangeLocation();
   displayWebsite(locationName, data);
 });

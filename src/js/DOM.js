@@ -321,7 +321,7 @@ function removeErrorMessage() {
 }
 
 // Change weather forecast location
-export function changeLocation() {
+export function listenForChangeLocation() {
   const form = document.querySelector('form');
   form.addEventListener('submit', (event) => {
     // Prevent form submission
@@ -329,7 +329,6 @@ export function changeLocation() {
     const originalLocationName = form.elements['location'].value;
     // Get rid of accents because using those in the Polish language somehow changes the fetched country property to be in a language different than English
     const newLocationName = removeAccents(originalLocationName);
-    console.log(newLocationName);
     getWeatherData(newLocationName)
       .then((data) => {
         // Remove previous error message if there is any
