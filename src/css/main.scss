@@ -138,6 +138,22 @@ main {
         right: -50px;
       }
     }
+
+    .options {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+
+      img[class='change-unit'] {
+        cursor: pointer;
+        height: 24px;
+        width: 24px;
+
+        &:hover {
+          filter: $selected-tab-icon-clr;
+        }
+      }
+    }
   }
 
   .weather-info-details {

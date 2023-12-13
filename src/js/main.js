@@ -5,15 +5,16 @@ import {
   animateGitHubLogo,
   showCurrentWeather,
   showCurrentWeatherDetails,
-  showWeatherDetailsIcons,
+  showIcons,
   changeTab,
+  changeUnit,
 } from './DOM';
 import { setBackgroundPattern } from './icons';
 
 // Three days is the default as it is what the free Weather API key provides
 const FORECAST_LENGTH = 3;
 let locationName = 'Katowice';
-let unit = 'celsius';
+let unit = 'Celsius';
 
 // Fetch weather data from Weather API
 async function getWeatherData(location) {
@@ -36,11 +37,12 @@ async function getWeatherData(location) {
 
 underlineTab();
 animateGitHubLogo();
-showWeatherDetailsIcons();
+showIcons(unit);
 getWeatherData(locationName).then((data) => {
   const location = new Location(data);
   setBackgroundPattern(location.current.weatherCode, location.current.isDay);
   showCurrentWeather(location, unit);
   showCurrentWeatherDetails(location, unit);
   changeTab(location, unit);
+  changeUnit(unit);
 });

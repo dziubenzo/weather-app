@@ -13,6 +13,8 @@ import chanceOfSnowSrc from '../assets/weather-details-icons/chance-of-snow.svg'
 import sunriseSrc from '../assets/weather-details-icons/sunrise.svg';
 import sunsetSrc from '../assets/weather-details-icons/sunset.svg';
 import totalSnowSrc from '../assets/weather-details-icons/total-snow.svg';
+import celsiusSrc from '../assets/celsius.svg';
+import fahrenheitSrc from '../assets/fahrenheit.svg';
 
 // Underline a tab if clicked
 export function underlineTab() {
@@ -42,8 +44,8 @@ export function animateGitHubLogo() {
   });
 }
 
-// Show weather details icons for all tabs
-export function showWeatherDetailsIcons() {
+// Show icons for all tabs
+export function showIcons(unit) {
   // Current tab
   document.querySelector('img[alt="Humidity Icon"]').src = humiditySrc;
   document.querySelector('img[alt="Cloud Cover Icon"]').src = cloudCoverSrc;
@@ -76,6 +78,41 @@ export function showWeatherDetailsIcons() {
   ).src = airQualityIndexSrc;
   document.querySelector('img[alt="Sunrise Icon"]').src = sunriseSrc;
   document.querySelector('img[alt="Sunset Icon"]').src = sunsetSrc;
+
+  // Show Celsius/Fahrenheit icon
+  const unitIcons = document.querySelectorAll('img[class="change-unit"]');
+  unitIcons.forEach((icon) => {
+    if (unit === 'Celsius') {
+      icon.src = fahrenheitSrc;
+      icon.alt = 'Fahrenheit Icon';
+    } else {
+      icon.src = celsiusSrc;
+      icon.alt = 'Celsius Icon';
+    }
+  });
+}
+
+// Change units for weather data
+export function changeUnit(unit) {
+  // Change icons
+  const unitIcons = document.querySelectorAll('img[class="change-unit"]');
+  unitIcons.forEach((icon) => {
+    icon.addEventListener('click', () => {
+      if (unit === 'Fahrenheit') {
+        unit = 'Celsius';
+        unitIcons.forEach((icon) => {
+          icon.src = fahrenheitSrc;
+          icon.alt = 'Fahrenheit Icon';
+        });
+      } else {
+        unit = 'Fahrenheit';
+        unitIcons.forEach((icon) => {
+          icon.src = celsiusSrc;
+          icon.alt = 'Celsius Icon';
+        });
+      }
+    });
+  });
 }
 
 // Change tabs and data displayed
@@ -125,6 +162,7 @@ export function showCurrentWeather(locationObject, unit) {
   const lastUpdatedP = div.querySelector('p.last-updated');
 
   const currentData = locationObject.current;
+  const unitLowerCase = unit.toLowerCase();
 
   locationP.textContent = `${locationObject.location}, ${locationObject.country}`;
   localTimeP.textContent = `${format(
@@ -137,8 +175,8 @@ export function showCurrentWeather(locationObject, unit) {
     currentData.isDay,
   );
   weatherIconImg.alt = `${currentData.weatherDescription} Icon`;
-  temperatureP.textContent = currentData[`${unit}`].temperature;
-  feelsLikeP.textContent = currentData[`${unit}`].feelsLike;
+  temperatureP.textContent = currentData[`${unitLowerCase}`].temperature;
+  feelsLikeP.textContent = currentData[`${unitLowerCase}`].feelsLike;
   lastUpdatedP.textContent = `Updated ${formatDistance(
     currentData.lastUpdated,
     locationObject.localTime,
@@ -161,15 +199,16 @@ export function showCurrentWeatherDetails(locationObject, unit) {
   const visibilityP = div.querySelector('p.visibility-value');
 
   const currentData = locationObject.current;
+  const unitLowerCase = unit.toLowerCase();
 
   humidityP.textContent = currentData.humidity;
   cloudCoverP.textContent = currentData.cloudCover;
   uvIndexP.textContent = currentData.uvIndex;
   airQualityIndexP.textContent = currentData.airQualityIndex;
-  windSpeedP.textContent = currentData[`${unit}`].windSpeed;
-  pressureP.textContent = currentData[`${unit}`].pressure;
-  precipitationP.textContent = currentData[`${unit}`].precipitation;
-  visibilityP.textContent = currentData[`${unit}`].visibility;
+  windSpeedP.textContent = currentData[`${unitLowerCase}`].windSpeed;
+  pressureP.textContent = currentData[`${unitLowerCase}`].pressure;
+  precipitationP.textContent = currentData[`${unitLowerCase}`].precipitation;
+  visibilityP.textContent = currentData[`${unitLowerCase}`].visibility;
 }
 
 // Show main weather info in forecast tabs
@@ -186,15 +225,19 @@ export function showForecastWeather(locationObject, day, unit) {
 
   const currentData = locationObject.current;
   const forecastData = locationObject[`${day}`];
+  const unitLowerCase = unit.toLowerCase();
 
   locationP.textContent = `${locationObject.location}, ${locationObject.country}`;
   localTimeP.textContent = `${format(forecastData.date, 'EEEE, d MMMM yyyy')}`;
   descriptionP.textContent = forecastData.weatherDescription;
   weatherIconImg.src = getWeatherIcon(forecastData.weatherCode);
   weatherIconImg.alt = `${currentData.weatherDescription} Icon`;
-  avgTemperatureP.textContent = forecastData[`${unit}`].averageTemperature;
-  minTemperatureP.textContent = forecastData[`${unit}`].minimumTemperature;
-  maxTemperatureP.textContent = forecastData[`${unit}`].maximumTemperature;
+  avgTemperatureP.textContent =
+    forecastData[`${unitLowerCase}`].averageTemperature;
+  minTemperatureP.textContent =
+    forecastData[`${unitLowerCase}`].minimumTemperature;
+  maxTemperatureP.textContent =
+    forecastData[`${unitLowerCase}`].maximumTemperature;
   lastUpdatedP.textContent = `Updated ${formatDistance(
     currentData.lastUpdated,
     locationObject.localTime,
@@ -219,12 +262,14 @@ export function showForecastWeatherDetails(locationObject, day, unit) {
   const sunsetP = div.querySelector('p.sunset-value');
 
   const forecastData = locationObject[`${day}`];
+  const unitLowerCase = unit.toLowerCase();
 
   avgHumidityP.textContent = forecastData.averageHumidity;
-  maxWindSpeedP.textContent = forecastData[`${unit}`].maximumWindSpeed;
+  maxWindSpeedP.textContent = forecastData[`${unitLowerCase}`].maximumWindSpeed;
   chanceOfRainP.textContent = forecastData.chanceOfRain;
   chanceOfSnowP.textContent = forecastData.chanceOfSnow;
-  totalPrecipitationP.textContent = forecastData[`${unit}`].totalPrecipitation;
+  totalPrecipitationP.textContent =
+    forecastData[`${unitLowerCase}`].totalPrecipitation;
   totalSnowP.textContent = forecastData.totalSnow;
   uvIndexP.textContent = forecastData.uvIndex;
   airQualityIndexP.textContent = forecastData.airQualityIndex;
