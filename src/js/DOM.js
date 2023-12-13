@@ -342,7 +342,7 @@ export function listenForNewLocation() {
     // Prevent form submission
     event.preventDefault();
     const originalLocationName = form.elements['location'].value;
-    // Get rid of accents because using those in the Polish language somehow changes the fetched country property to be in a language different than English
+    // Get rid of accents because using those in the Polish language somehow changes the fetched country property to be in a language different than English (not Polish either)
     const newLocationName = removeAccents(originalLocationName);
     getWeatherData(newLocationName)
       .then((data) => {

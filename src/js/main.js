@@ -12,11 +12,24 @@ import {
 } from './DOM';
 import { setBackgroundPattern } from './icons';
 
+const DEFAULT_LOCATION = 'Wielun';
+const DEFAULT_UNIT = 'Celsius';
 // Three days is the default as it is what the free Weather API key provides
 const FORECAST_LENGTH = 3;
-let locationName = 'Katowice';
+let locationName;
 let location;
-let unit = 'Celsius';
+let unit;
+
+retrieveDataFromLocalStorage();
+underlineTab();
+animateGitHubLogo();
+showIcons();
+getWeatherData(locationName).then((data) => {
+  displayWebsite(locationName, data);
+  listenForTabs();
+  listenForUnitChange();
+  listenForNewLocation();
+});
 
 // Fetch weather data from Weather API
 export async function getWeatherData(location) {
@@ -33,9 +46,10 @@ export async function getWeatherData(location) {
   }
 }
 
-// Change the value of the unit variable
+// Change the value of the unit variable and update localStorage
 export function changeUnitVariable(newUnit) {
   unit = newUnit;
+  localStorage.setItem('unit', unit);
 }
 
 // Get the unit variable
@@ -52,17 +66,25 @@ export function getLocationObject() {
 export function displayWebsite(newLocationName, fetchedData) {
   location = new Location(fetchedData);
   locationName = newLocationName;
+  localStorage.setItem('location', location.location);
   setBackgroundPattern(location.current.weatherCode, location.current.isDay);
   showCurrentWeather(location, unit);
   showCurrentWeatherDetails(location, unit);
 }
 
-underlineTab();
-animateGitHubLogo();
-showIcons();
-getWeatherData(locationName).then((data) => {
-  displayWebsite(locationName, data);
-  listenForTabs();
-  listenForUnitChange();
-  listenForNewLocation();
-});
+// Retrieve location and unit from localStorage
+// Set default ones if they do not exist
+function retrieveDataFromLocalStorage() {
+  if (localStorage.getItem('location')) {
+    locationName = localStorage.getItem('location');
+  } else {
+    locationName = DEFAULT_LOCATION;
+    localStorage.setItem('location', locationName);
+  }
+  if (localStorage.getItem('unit')) {
+    unit = localStorage.getItem('unit');
+  } else {
+    unit = DEFAULT_UNIT;
+    localStorage.setItem('unit', unit);
+  }
+}
