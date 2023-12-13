@@ -28,7 +28,7 @@ $max-temperature-icon-clr: invert(32%) sepia(85%) saturate(5006%)
   background: url('/src/assets/weather-icons/weather-night-partly-cloudy.svg');
 }
 
-.night::before {
+.night-clear::before {
   background: url('/src/assets/weather-icons/weather-night.svg');
 }
 
@@ -81,7 +81,7 @@ $max-temperature-icon-clr: invert(32%) sepia(85%) saturate(5006%)
 .lightning-rainy,
 .lightning,
 .night-partly-cloudy,
-.night,
+.night-clear,
 .partly-cloudy,
 .partly-lightning,
 .partly-rainy,

@@ -300,6 +300,25 @@ export function showForecastWeatherDetails(locationObject, day, unit) {
   sunsetP.textContent = format(forecastData.sunset, 'kk:mm');
 }
 
+// Create p with error message and append it below the form
+function showErrorMessage(errorMessage) {
+  const p = document.createElement('p');
+  const optionsDiv = document.querySelector('.current-tab .options');
+  const unitIcon = document.querySelector(
+    '.current-tab img[class="change-unit"]',
+  );
+  p.className = 'error-message';
+  p.textContent = errorMessage;
+  optionsDiv.insertBefore(p, unitIcon);
+}
+
+// Remove the error message from the DOM if there is any
+function removeErrorMessage() {
+  if (document.querySelector('.error-message')) {
+    document.querySelector('.error-message').remove();
+  }
+}
+
 // Change weather forecast location
 export function changeLocation() {
   const form = document.querySelector('form');
@@ -309,13 +328,23 @@ export function changeLocation() {
     const newLocationName = form.elements['location'].value;
     getWeatherData(newLocationName)
       .then((data) => {
-        // Clear the input field if fetching is successful
+        // Remove previous error message if there is any
+        removeErrorMessage();
+        // Clear the input field
         form.elements['location'].value = '';
-        // Display weather data for a new location
+        // Display weather data for the new location
         displayWebsite(newLocationName, data);
       })
       .catch((error) => {
-        return;
+        // Remove previous error message if there is one
+        removeErrorMessage();
+        // Clear the input field
+        form.elements['location'].value = '';
+        // Manipulate error message and show it
+        const slicedError = error.toString().slice(7);
+        showErrorMessage(
+          `Error for query '${newLocationName}': ${slicedError}`,
+        );
       });
   });
 }

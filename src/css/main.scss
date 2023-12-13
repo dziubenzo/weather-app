@@ -183,6 +183,10 @@ main {
         }
       }
 
+      .error-message {
+        color: red;
+      }
+
       img[class='change-unit'] {
         cursor: pointer;
         width: 30px;
