@@ -1,5 +1,6 @@
 import { format, formatDistance } from 'date-fns';
 import { getWeatherIcon, setBackgroundPattern } from './icons';
+import { changeUnitVariable } from './main';
 import humiditySrc from '../assets/weather-details-icons/humidity.svg';
 import cloudCoverSrc from '../assets/weather-details-icons/cloud-cover.svg';
 import windSpeedSrc from '../assets/weather-details-icons/wind-speed.svg';
@@ -93,11 +94,11 @@ export function showIcons(unit) {
 }
 
 // Change units for weather data
-export function changeUnit(unit) {
-  // Change icons
+export function changeUnits(locationObject, unit) {
   const unitIcons = document.querySelectorAll('img[class="change-unit"]');
   unitIcons.forEach((icon) => {
     icon.addEventListener('click', () => {
+      // Change icons
       if (unit === 'Fahrenheit') {
         unit = 'Celsius';
         unitIcons.forEach((icon) => {
@@ -111,6 +112,25 @@ export function changeUnit(unit) {
           icon.alt = 'Celsius Icon';
         });
       }
+      // Determine the currently selected tab to change units in
+      const selectedTab = document.querySelector(
+        'li[class*="selected"]',
+      ).className;
+      if (selectedTab.includes('current')) {
+        showCurrentWeather(locationObject, unit);
+        showCurrentWeatherDetails(locationObject, unit);
+      } else if (selectedTab.includes('today')) {
+        showForecastWeather(locationObject, 'today', unit);
+        showForecastWeatherDetails(locationObject, 'today', unit);
+      } else if (selectedTab.includes('tomorrow')) {
+        showForecastWeather(locationObject, 'tomorrow', unit);
+        showForecastWeatherDetails(locationObject, 'tomorrow', unit);
+      } else {
+        showForecastWeather(locationObject, 'twoDays', unit);
+        showForecastWeatherDetails(locationObject, 'twoDays', unit);
+      }
+      // Change the unit variable in main.js
+      changeUnitVariable(unit);
     });
   });
 }
