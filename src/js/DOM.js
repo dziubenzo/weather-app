@@ -366,3 +366,21 @@ export function listenForNewLocation() {
       });
   });
 }
+
+// Show the loading screen  and hide the weather info and weather info details divs until the page is fully loaded
+// Once the page is loaded, hide the loading screen and show the weather info divs
+// This ensures that the loading screen stays put
+export function showAndHideLoadingScreen() {
+  const loadingScreen = document.querySelector('.loading-screen');
+  const weatherInfoDiv = document.querySelector('.current-tab .weather-info');
+  const weatherInfoDetailsDiv = document.querySelector(
+    '.current-tab .weather-info-details',
+  );
+  weatherInfoDiv.style.display = 'none';
+  weatherInfoDetailsDiv.style.display = 'none';
+  addEventListener('load', () => {
+    loadingScreen.style.display = 'none';
+    weatherInfoDiv.removeAttribute('style');
+    weatherInfoDetailsDiv.removeAttribute('style');
+  });
+}
