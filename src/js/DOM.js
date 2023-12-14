@@ -342,6 +342,8 @@ export function listenForNewLocation() {
     // Prevent form submission
     event.preventDefault();
     const originalLocationName = form.elements['location'].value;
+    // Show loading screen
+    showLoadingScreenFetching(originalLocationName);
     // Get rid of accents because using those in the Polish language somehow changes the fetched country property to be in a language different than English (not Polish either)
     const newLocationName = removeAccents(originalLocationName);
     getWeatherData(newLocationName)
@@ -352,6 +354,8 @@ export function listenForNewLocation() {
         form.elements['location'].value = '';
         // Display weather data for the new location
         displayWebsite(newLocationName, data);
+        // Hide loading screen (but wait for images to be downloaded)
+        hideLoadingScreenFetching();
       })
       .catch((error) => {
         // Remove previous error message if there is one
@@ -361,16 +365,18 @@ export function listenForNewLocation() {
         // Manipulate error message and show it
         const slicedError = error.toString().slice(7);
         showErrorMessage(
-          `Error for query '${originalLocationName}': ${slicedError}`,
+          `Error for query "${originalLocationName}": ${slicedError}`,
         );
+        // Hide loading screen
+        hideLoadingScreenFetching(false);
       });
   });
 }
 
-// Show the loading screen  and hide the weather info and weather info details divs until the page is fully loaded
+// Show the loading screen and hide the weather info and weather info details divs until the page is fully loaded
 // Once the page is loaded, hide the loading screen and show the weather info divs
 // This ensures that the loading screen stays put
-export function showAndHideLoadingScreen() {
+export function handleLoadingScreen() {
   const loadingScreen = document.querySelector('.loading-screen');
   const weatherInfoDiv = document.querySelector('.current-tab .weather-info');
   const weatherInfoDetailsDiv = document.querySelector(
@@ -378,9 +384,66 @@ export function showAndHideLoadingScreen() {
   );
   weatherInfoDiv.style.display = 'none';
   weatherInfoDetailsDiv.style.display = 'none';
-  addEventListener('load', () => {
+  addEventListener('load', function showContent() {
     loadingScreen.style.display = 'none';
     weatherInfoDiv.removeAttribute('style');
     weatherInfoDetailsDiv.removeAttribute('style');
+    removeEventListener('load', showContent);
   });
+}
+
+// Show loading screen while fetching weather data
+function showLoadingScreenFetching(query) {
+  const loadingScreen = document.querySelector('.loading-screen');
+  const loadingMessage = loadingScreen.querySelector('p');
+  const weatherInfoDiv = document.querySelector('.current-tab .weather-info');
+  const weatherInfoDetailsDiv = document.querySelector(
+    '.current-tab .weather-info-details',
+  );
+  weatherInfoDiv.style.display = 'none';
+  weatherInfoDetailsDiv.style.display = 'none';
+  loadingMessage.textContent = `Fetching weather data for "${query}"...`;
+  loadingScreen.style.display = 'grid';
+}
+
+// Hide loading screen when the data are fetched and the page is fully loaded
+function hideLoadingScreenFetching(areNewImages = true) {
+  const loadingScreen = document.querySelector('.loading-screen');
+  const weatherInfoDiv = document.querySelector('.current-tab .weather-info');
+  const weatherInfoDetailsDiv = document.querySelector(
+    '.current-tab .weather-info-details',
+  );
+  if (areNewImages) {
+    waitForImages().then(() => {
+      loadingScreen.style.display = 'none';
+      weatherInfoDiv.removeAttribute('style');
+      weatherInfoDetailsDiv.removeAttribute('style');
+    });
+  } else {
+    loadingScreen.style.display = 'none';
+    weatherInfoDiv.removeAttribute('style');
+    weatherInfoDetailsDiv.removeAttribute('style');
+  }
+}
+
+// Make sure that the weather icon and the background pattern are loaded
+function waitForImages() {
+  // Get the weather icon
+  const weatherIcon = document.querySelector('.current-tab .weather-icon');
+  // Create an image element using the same url as the one in CSS that sets the background pattern
+  const body = document.querySelector('body');
+  const value = getComputedStyle(body, '::before').backgroundImage;
+  const backgroundImgSrc = value.replace(/url\(['"]?(.*?)['"]?\)/i, '$1');
+  const backgroundImg = document.createElement('img');
+  backgroundImg.src = backgroundImgSrc;
+
+  // Create promises that resolve when the images are loaded
+  const weatherIconPromise = new Promise(
+    (resolve) => (weatherIcon.onload = () => resolve('Weather icon loaded')),
+  );
+  const backgroundImgPromise = new Promise(
+    (resolve) =>
+      (backgroundImg.onload = () => resolve('Background image loaded')),
+  );
+  return Promise.all([weatherIconPromise, backgroundImgPromise]);
 }

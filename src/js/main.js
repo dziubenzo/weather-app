@@ -9,7 +9,7 @@ import {
   listenForTabs,
   listenForUnitChange,
   listenForNewLocation,
-  showAndHideLoadingScreen,
+  handleLoadingScreen,
 } from './DOM';
 import { setBackgroundPattern } from './icons';
 
@@ -21,7 +21,7 @@ let locationName;
 let location;
 let unit;
 
-showAndHideLoadingScreen();
+handleLoadingScreen();
 retrieveDataFromLocalStorage();
 underlineTab();
 animateGitHubLogo();
