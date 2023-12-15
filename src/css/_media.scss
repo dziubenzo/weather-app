@@ -1,4 +1,73 @@
 @use 'utilities' as *;
 
 @mixin queries {
+  @media only screen and (width <= 768px) {
+    .container {
+      padding: 0px;
+    }
+
+    header {
+      background-color: rgb(255, 255, 255);
+      position: sticky;
+      top: 0px;
+      z-index: 1;
+      height: 50px;
+      width: 100%;
+
+      nav {
+        width: 100%;
+
+        li {
+          align-self: center;
+        }
+
+        .sliding-underline {
+          bottom: 0px;
+        }
+      }
+    }
+
+    main {
+      .weather-info {
+        .temperature,
+        .avg-temperature {
+          font-size: 3rem;
+        }
+
+        .location {
+          font-size: 1.5rem;
+        }
+
+        .description {
+          font-size: 2rem;
+        }
+      }
+
+      .weather-info-details {
+        div {
+          img {
+            height: 36px;
+            width: 36px;
+          }
+
+          p {
+            text-align: center;
+          }
+
+          p:last-child {
+            font-size: 1.2rem;
+          }
+        }
+      }
+    }
+
+    footer {
+      width: 100%;
+      position: sticky;
+      bottom: 0px;
+      z-index: 1;
+      background-color: rgb(255, 255, 255);
+      padding: 8px 0;
+    }
+  }
 }
