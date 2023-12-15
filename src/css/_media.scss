@@ -10,7 +10,6 @@
       background-color: rgb(255, 255, 255);
       position: sticky;
       top: 0px;
-      z-index: 1;
       height: 50px;
       width: 100%;
 
@@ -65,9 +64,8 @@
       width: 100%;
       position: sticky;
       bottom: 0px;
-      z-index: 1;
       background-color: rgb(255, 255, 255);
       padding: 8px 0;
-    }
+    } 
   }
 }

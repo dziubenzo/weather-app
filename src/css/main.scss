@@ -105,6 +105,35 @@ main {
       font-size: 2rem;
     }
 
+    .feels-like-wrapper {
+      position: relative;
+
+      .feels-like {
+        width: 5ch;
+        text-align: center;
+
+        &::before,
+        &::after {
+          position: absolute;
+          height: 32px;
+          width: 32px;
+          top: 5px;
+        }
+  
+        &::before {
+          left: -30px;
+          content: url('../assets/weather-details-icons/feels-like-one.svg');
+        }
+  
+        &::after {
+          right: -30px;
+          content: url('../assets/weather-details-icons/feels-like-two.svg');
+        }
+      }
+
+
+    }
+
     .local-time,
     .last-updated {
       font-size: 1rem;
@@ -113,12 +142,10 @@ main {
     .min-max-temps {
       position: relative;
       display: flex;
-      justify-content: space-between;
-      width: 190px;
 
       p:first-child,
       p:last-child {
-        width: 85px;
+        width: 5ch;
         text-align: center;
       }
 
@@ -126,20 +153,20 @@ main {
       p:last-child::after {
         position: absolute;
         top: 5px;
-        height: 40px;
-        width: 40px;
+        height: 32px;
+        width: 32px;
       }
 
       p:first-child::before {
         content: url('../assets/weather-details-icons/min-temperature.svg');
-        left: -40px;
+        left: -30px;
         filter: $min-temperature-icon-clr;
       }
 
       p:last-child::after {
         content: url('../assets/weather-details-icons/max-temperature.svg');
         filter: $max-temperature-icon-clr;
-        right: -40px;
+        right: -30px;
       }
     }
 
@@ -269,6 +296,7 @@ footer {
 
     p {
       font-size: 1.4rem;
+      text-align: center;
     }
   }
 }

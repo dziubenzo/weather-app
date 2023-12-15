@@ -26,6 +26,8 @@ import fahrenheitSrc from '../assets/fahrenheit.svg';
 import submitScr from '../assets/submit.svg';
 import minTemperatureSrc from '../assets/weather-details-icons/min-temperature.svg';
 import maxTemperatureSrc from '../assets/weather-details-icons/max-temperature.svg';
+import feelsLikeOneSrc from '../assets/weather-details-icons/feels-like-one.svg';
+import feelsLikeTwoSrc from '../assets/weather-details-icons/feels-like-two.svg';
 
 // Underline a tab if clicked
 export function underlineTab() {
@@ -110,6 +112,12 @@ export function showIcons() {
   const maxTempIcon = new Image();
   minTempIcon.src = minTemperatureSrc;
   maxTempIcon.src = maxTemperatureSrc;
+
+  // Feels like icons
+  const feelsLikeOneIcon = new Image();
+  const feelsLikeTwoIcon = new Image();
+  feelsLikeOneIcon.src = feelsLikeOneSrc;
+  feelsLikeTwoIcon.src = feelsLikeTwoSrc;
 }
 
 // Handle changing units for weather data
@@ -412,7 +420,7 @@ function showLoadingScreenFetching(query) {
   );
   weatherInfoDiv.style.display = 'none';
   weatherInfoDetailsDiv.style.display = 'none';
-  loadingMessage.textContent = `Fetching weather data for "${query}"...`;
+  loadingMessage.textContent = `Fetching data for "${query}"...`;
   loadingScreen.style.display = 'grid';
 }
 
