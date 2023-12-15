@@ -114,11 +114,10 @@ export function showIcons() {
 
 // Handle changing units for weather data
 export function listenForUnitChange() {
-  const locationObject = getLocationObject();
-  let unit = getUnitVariable();
   const unitIcons = document.querySelectorAll('img[class="change-unit"]');
   unitIcons.forEach((icon) => {
     icon.addEventListener('click', () => {
+      let unit = getUnitVariable();
       // Change icons
       if (unit === 'Fahrenheit') {
         unit = 'Celsius';
@@ -134,6 +133,7 @@ export function listenForUnitChange() {
         });
       }
       // Determine the currently selected tab to change units in
+      const locationObject = getLocationObject();
       const selectedTab = document.querySelector(
         'li[class*="selected"]',
       ).className;
