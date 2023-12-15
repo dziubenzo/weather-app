@@ -113,7 +113,14 @@ main {
     .min-max-temps {
       position: relative;
       display: flex;
-      gap: 48px;
+      justify-content: space-between;
+      width: 190px;
+
+      p:first-child,
+      p:last-child {
+        width: 85px;
+        text-align: center;
+      }
 
       p:first-child::before,
       p:last-child::after {
@@ -125,14 +132,14 @@ main {
 
       p:first-child::before {
         content: url('../assets/weather-details-icons/min-temperature.svg');
-        left: -50px;
+        left: -40px;
         filter: $min-temperature-icon-clr;
       }
 
       p:last-child::after {
         content: url('../assets/weather-details-icons/max-temperature.svg');
         filter: $max-temperature-icon-clr;
-        right: -50px;
+        right: -40px;
       }
     }
 
