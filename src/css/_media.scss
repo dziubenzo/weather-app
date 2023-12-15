@@ -28,6 +28,8 @@
 
     main {
       .weather-info {
+        grid-template-columns: auto;
+
         .temperature,
         .avg-temperature {
           font-size: 3rem;
@@ -66,6 +68,6 @@
       bottom: 0px;
       background-color: rgb(255, 255, 255);
       padding: 8px 0;
-    } 
+    }
   }
 }

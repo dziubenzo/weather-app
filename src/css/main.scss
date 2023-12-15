@@ -78,6 +78,7 @@ main {
 
   .weather-info {
     display: grid;
+    grid-template-columns: 500px;
     place-items: center;
 
     .location {
@@ -119,19 +120,17 @@ main {
           width: 32px;
           top: 5px;
         }
-  
+
         &::before {
           left: -30px;
           content: url('../assets/weather-details-icons/feels-like-one.svg');
         }
-  
+
         &::after {
           right: -30px;
           content: url('../assets/weather-details-icons/feels-like-two.svg');
         }
       }
-
-
     }
 
     .local-time,
