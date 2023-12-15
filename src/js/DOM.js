@@ -24,6 +24,8 @@ import totalSnowSrc from '../assets/weather-details-icons/total-snow.svg';
 import celsiusSrc from '../assets/celsius.svg';
 import fahrenheitSrc from '../assets/fahrenheit.svg';
 import submitScr from '../assets/submit.svg';
+import minTemperatureSrc from '../assets/weather-details-icons/min-temperature.svg';
+import maxTemperatureSrc from '../assets/weather-details-icons/max-temperature.svg';
 
 // Underline a tab if clicked
 export function underlineTab() {
@@ -102,6 +104,12 @@ export function showIcons() {
   });
   // Submit icon
   document.querySelector('img[class="submit-icon"]').src = submitScr;
+
+  // Min and max temperature icons
+  const minTempIcon = new Image();
+  const maxTempIcon = new Image();
+  minTempIcon.src = minTemperatureSrc;
+  maxTempIcon.src = maxTemperatureSrc;
 }
 
 // Handle changing units for weather data
