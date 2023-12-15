@@ -1,3 +1,5 @@
+import { getWeatherIcon } from './icons';
+
 export default class Location {
   constructor(data) {
     // Divide API data into relevant chunks
@@ -62,6 +64,16 @@ export default class Location {
         dayDataArray[index].condition.text;
       this[`${daysArray[index]}`].weatherCode =
         dayDataArray[index].condition.code;
+      // Create img elements with weather icons for all tabs to speed up background pattern and icon loading
+      this[`${daysArray[index]}`].weatherIconImg =
+        document.createElement('img');
+      this[`${daysArray[index]}`].weatherIconImg.className = 'weather-icon';
+      this[`${daysArray[index]}`].weatherIconImg.src = getWeatherIcon(
+        this[`${daysArray[index]}`].weatherCode,
+      );
+      this[`${daysArray[index]}`].weatherIconImg.alt = `${
+        this[`${daysArray[index]}`].weatherDescription
+      } Icon`;
       this[`${daysArray[index]}`].date = new Date(dateDataArray[index]);
       this[`${daysArray[index]}`].sunrise = new Date(
         `${dateDataArray[index]} ${astroDataArray[index].sunrise}`,

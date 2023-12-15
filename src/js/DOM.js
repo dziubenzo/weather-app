@@ -256,7 +256,6 @@ export function showForecastWeather(locationObject, day, unit) {
   const locationP = div.querySelector('p.location');
   const localTimeP = div.querySelector('p.local-time');
   const descriptionP = div.querySelector('p.description');
-  const weatherIconImg = div.querySelector('img');
   const avgTemperatureP = div.querySelector('p.avg-temperature');
   const minTemperatureP = div.querySelector('p.min-temperature');
   const maxTemperatureP = div.querySelector('p.max-temperature');
@@ -269,8 +268,11 @@ export function showForecastWeather(locationObject, day, unit) {
   locationP.textContent = `${locationObject.location}, ${locationObject.country}`;
   localTimeP.textContent = `${format(forecastData.date, 'EEEE, d MMMM yyyy')}`;
   descriptionP.textContent = forecastData.weatherDescription;
-  weatherIconImg.src = getWeatherIcon(forecastData.weatherCode);
-  weatherIconImg.alt = `${currentData.weatherDescription} Icon`;
+  // Add the weather icon img element from the Location instance and remove the existing one if it exists
+  if (document.querySelector('.forecast-tab .weather-icon')) {
+    document.querySelector('.forecast-tab .weather-icon').remove();
+  }
+  div.insertBefore(forecastData.weatherIconImg, avgTemperatureP);
   avgTemperatureP.textContent =
     forecastData[`${unitLowerCase}`].averageTemperature;
   minTemperatureP.textContent =
