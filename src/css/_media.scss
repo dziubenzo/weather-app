@@ -70,5 +70,9 @@
       background-color: rgb(255, 255, 255);
       padding: 8px 0;
     }
+
+    .loading-screen {
+      z-index: 2;
+    }
   }
 }

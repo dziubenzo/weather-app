@@ -222,7 +222,7 @@ export function showCurrentWeather(locationObject, unit) {
   locationP.textContent = `${locationObject.location}, ${locationObject.country}`;
   localTimeP.textContent = `${format(
     locationObject.localTime,
-    'd MMM yyyy, kk:mm',
+    'd MMM yyyy, HH:mm',
   )}`;
   descriptionP.textContent = currentData.weatherDescription;
   weatherIconImg.src = getWeatherIcon(
