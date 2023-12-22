@@ -89,9 +89,6 @@ export default class Location {
         dayDataArray[index].daily_chance_of_rain + '%';
       this[`${daysArray[index]}`].chanceOfSnow =
         dayDataArray[index].daily_chance_of_snow + '%';
-      this[`${daysArray[index]}`].uvIndex = dayDataArray[index].uv;
-      this[`${daysArray[index]}`].airQualityIndex =
-        dayDataArray[index].air_quality['gb-defra-index'];
 
       // Forecast data - Celsius
       this[`${daysArray[index]}`].celsius = {};

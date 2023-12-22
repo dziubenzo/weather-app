@@ -84,11 +84,6 @@ export function showIcons() {
   document.querySelector('img[alt="Total Precipitation Icon"]').src =
     precipitationSrc;
   document.querySelector('img[alt="Total Snow Icon"]').src = totalSnowSrc;
-  document.querySelector('.forecast-tab img[alt="UV Index Icon"]').src =
-    uvIndexSrc;
-  document.querySelector(
-    '.forecast-tab img[alt="Air Quality Index Icon"]',
-  ).src = airQualityIndexSrc;
   document.querySelector('img[alt="Sunrise Icon"]').src = sunriseSrc;
   document.querySelector('img[alt="Sunset Icon"]').src = sunsetSrc;
 
@@ -313,8 +308,6 @@ export function showForecastWeatherDetails(locationObject, day, unit) {
   const chanceOfSnowP = div.querySelector('p.chance-of-snow-value');
   const totalPrecipitationP = div.querySelector('p.total-precipitation-value');
   const totalSnowP = div.querySelector('p.total-snow-value');
-  const uvIndexP = div.querySelector('p.uv-index-value');
-  const airQualityIndexP = div.querySelector('p.air-quality-index-value');
   const sunriseP = div.querySelector('p.sunrise-value');
   const sunsetP = div.querySelector('p.sunset-value');
 
@@ -328,8 +321,6 @@ export function showForecastWeatherDetails(locationObject, day, unit) {
   totalPrecipitationP.textContent =
     forecastData[`${unitLowerCase}`].totalPrecipitation;
   totalSnowP.textContent = forecastData.totalSnow;
-  uvIndexP.textContent = forecastData.uvIndex;
-  airQualityIndexP.textContent = forecastData.airQualityIndex;
   sunriseP.textContent = format(forecastData.sunrise, 'kk:mm');
   sunsetP.textContent = format(forecastData.sunset, 'kk:mm');
 }
